@@ -1,0 +1,165 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://UI/cloudkey.png" type="Texture" id=1]
+[ext_resource path="res://UI/missingkey.png" type="Texture" id=2]
+[ext_resource path="res://UI/emptyhealth.png" type="Texture" id=3]
+[ext_resource path="res://UI/healthfull.png" type="Texture" id=4]
+[ext_resource path="res://UI/earthkey.png" type="Texture" id=5]
+[ext_resource path="res://UI/SpiderKey.png" type="Texture" id=6]
+[ext_resource path="res://UI/UI.gd" type="Script" id=7]
+[ext_resource path="res://UI/InventoryD.png" type="Texture" id=8]
+[ext_resource path="res://UI/InventoryBackground.png" type="Texture" id=9]
+[ext_resource path="res://UI/InventoryLabel.png" type="Texture" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Key"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/SpiderKeyAnimation:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2.5625, 2.5625 ), Vector2( 1.36531, 1.36531 ), Vector2( 1.18149, 1.18149 ), Vector2( 1.02677, 1.02677 ), Vector2( 0.97498, 0.97498 ), Vector2( 0.625, 0.625 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/SpiderKeyAnimation:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 163.75, 86.5 ), Vector2( 133.231, 90.0469 ), Vector2( 113.669, 78.9636 ), Vector2( 90, 68 ), Vector2( 40.0823, 38.5441 ), Vector2( 11, 27 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/SpiderKeyAnimation:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 31.0, 69.7, 100.7, 216.8, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/SpiderKeyAnimation:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/SpiderKeyAnimation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -212, 139 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/SpiderKeyAnimation:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MissingSpider" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 5, 27 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="MissingEarth" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 11, 27 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="MissingCloud" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 17, 27 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 2 )
+
+[node name="Earthkey" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 11, 27 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 5 )
+
+[node name="Cloudkey" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 17, 27 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 1 )
+
+[node name="KeyAnimation" type="AnimationPlayer" parent="CanvasLayer"]
+root_node = NodePath("../..")
+playback_speed = 0.7
+anims/Key = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="SpiderKeyAnimation" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( -212, 139 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 6 )
+
+[node name="SpiderKey" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 5, 27 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 6 )
+
+[node name="Inventory" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 165, 90 )
+scale = Vector2( 1.44711, 1.33259 )
+texture = ExtResource( 8 )
+
+[node name="InventoryLabel" type="Sprite" parent="CanvasLayer/Inventory"]
+position = Vector2( 7.39098e-06, -32.268 )
+scale = Vector2( 0.964567, 0.891122 )
+texture = ExtResource( 10 )
+
+[node name="InventoryBackground" type="Sprite" parent="CanvasLayer/Inventory"]
+position = Vector2( -3.45517, 1.50083 )
+scale = Vector2( 0.941533, 0.99222 )
+texture = ExtResource( 9 )
+
+[node name="Emptyhealth" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 42, 10 )
+texture = ExtResource( 3 )
+
+[node name="Healthfull" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 42, 10 )
+texture = ExtResource( 4 )

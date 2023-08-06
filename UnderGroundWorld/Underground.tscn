@@ -1,0 +1,123 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://UnderGroundWorld/SpiderbossP1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SaveManager.gd" type="Script" id=2]
+[ext_resource path="res://UnderGroundWorld/cavefloor.png" type="Texture" id=3]
+[ext_resource path="res://Player/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UnderGroundWorld/Ladder.gd" type="Script" id=5]
+[ext_resource path="res://UnderGroundWorld/cavebackground.png" type="Texture" id=6]
+[ext_resource path="res://UnderGroundWorld/CaveOverlay.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UnderGroundWorld/caveentrancebackgroundattempt1.png" type="Texture" id=8]
+[ext_resource path="res://UnderGroundWorld/ladderrock.png" type="Texture" id=10]
+[ext_resource path="res://UnderGroundWorld/miningladder.png" type="Texture" id=11]
+[ext_resource path="res://UnderGroundWorld/miningsign.png" type="Texture" id=12]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 22.0227
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="TileSet" id=5]
+0/name = "cavefloor.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 4 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="Caveentrancebackgroundattempt1" type="Sprite"]
+position = Vector2( 162, 90 )
+texture = ExtResource( 8 )
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 110.0
+margin_top = -89.0
+margin_right = 452.0
+margin_bottom = 91.0
+texture = ExtResource( 6 )
+stretch_mode = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 2 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -136, 59 )
+shape = SubResource( 3 )
+
+[node name="PlayerNode" type="Node2D" parent="."]
+position = Vector2( 3, -7 )
+
+[node name="Player" parent="PlayerNode" instance=ExtResource( 4 )]
+position = Vector2( -135, 54 )
+z_index = 1
+
+[node name="TopLeft" parent="PlayerNode/Player/Camera2D/Limits" index="0"]
+position = Vector2( 2, 0 )
+
+[node name="BottomRight" parent="PlayerNode/Player/Camera2D/Limits" index="1"]
+position = Vector2( 1200, 188 )
+
+[node name="CollisionShape2D" parent="PlayerNode/Player" index="4"]
+position = Vector2( -3, -29 )
+
+[node name="Cavenode" parent="." instance=ExtResource( 7 )]
+position = Vector2( -210, -36 )
+
+[node name="Spiderden" parent="." instance=ExtResource( 1 )]
+position = Vector2( -36, -88 )
+
+[node name="Explosionattempt2" parent="Spiderden/AnimationPlayer" index="0"]
+position = Vector2( 219, 140 )
+
+[node name="Area2dCaveEntrance" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2dCaveEntrance"]
+polygon = PoolVector2Array( -69, -90, -50, -90, -45, -79, -45, -69, -46, -65, -45, -54, -43, -45, -41, -44, -42, -33, -49, -22, -54, -19, -57, -12, -57, 2, -61, 9, -62, 22, -58, 30, -55, 38, -56, 46, -64, 38, -72, 37, -79, 42, -83, 42, -83, 41, -77, 14, -76, -16, -69, -29, -64, -34, -60, -48, -73, -62, -68, -78 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 393206, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 0, 0, 327711, 0, 0, 327712, 0, 0, 327713, 0, 0, 327714, 0, 0, 327715, 0, 0, 327716, 0, 0, 327717, 0, 0, 327718, 0, 0, 327719, 0, 0, 458742, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393237, 0, 0, 393238, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 393255, 0, 0 )
+
+[node name="Miningladder" type="Sprite" parent="."]
+position = Vector2( 151, 96 )
+texture = ExtResource( 11 )
+
+[node name="Ladderrock" type="Sprite" parent="Miningladder"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 10 )
+
+[node name="Ladderrock" type="Sprite" parent="Miningladder/Ladderrock"]
+position = Vector2( 0, 16 )
+texture = ExtResource( 10 )
+
+[node name="Miningsign" type="Sprite" parent="Miningladder/Ladderrock"]
+position = Vector2( -10, -21 )
+scale = Vector2( 1, 0.8125 )
+texture = ExtResource( 12 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
+
+[editable path="PlayerNode/Player"]
+[editable path="PlayerNode/Player/Hurtbox"]
+[editable path="Spiderden"]
