@@ -14,7 +14,10 @@ func process_player_movement():
 	move_and_slide(velocity)
 
 func _on_FloorDetector_area_entered(_area):
+	$AnimationPlayer.play("RockExplosion")
+	yield(get_tree().create_timer(.3), "timeout")
 	queue_free()
+	
 
 func _input(event):
 	if event.is_action_pressed("Inventory"):

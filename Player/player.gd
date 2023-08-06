@@ -12,6 +12,8 @@ var hp = 100
 var fast_fall = false
 var velocity = Vector2.ZERO
 var movement_enabled = true
+var isButtonHeldright = false
+var isButtonHeldleft = false
 
 func _physics_process(_delta):
 	if movement_enabled:
@@ -21,6 +23,22 @@ func process_player_movement():
 	velocity.y += GRAVITY
 	var input = Vector2.ZERO
 	input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	
+	if Input.is_action_pressed("ui_right"):
+		isButtonHeldright = true
+		$AnimationPlayer.play("RunRight")
+	else:
+		if isButtonHeldright:
+			$AnimationPlayer.play("IdleRight")
+		isButtonHeldright = false
+	
+	if Input.is_action_pressed("ui_left"):
+		isButtonHeldleft = true
+		$AnimationPlayer.play("RunLeft")
+	else:
+		if isButtonHeldleft:
+			$AnimationPlayer.play("IdleLeft")
+		isButtonHeldleft = false
 	
 	if input.x == 0:
 		apply_friction()
