@@ -1,0 +1,218 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://MainWorld/Area2D.gd" type="Script" id=1]
+[ext_resource path="res://Entity.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SkyWorld/CloudCover.png" type="Texture" id=3]
+[ext_resource path="res://MainWorld/short cave.png" type="Texture" id=4]
+[ext_resource path="res://MainWorld/attempt4back.png" type="Texture" id=5]
+[ext_resource path="res://MainWorld/StartingPoint.png" type="Texture" id=6]
+[ext_resource path="res://MainWorld/upperback.png" type="Texture" id=7]
+[ext_resource path="res://MainWorld/tileset.png" type="Texture" id=8]
+[ext_resource path="res://MainWorld/sign.png" type="Texture" id=9]
+[ext_resource path="res://MainWorld/Geyser.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Player/player.tscn" type="PackedScene" id=11]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 19.5, 22.5 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 16, 16, 0.0333519, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 0, 16, 14.9237, 0, 32.6429, 0, 48, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( 16, 16.2633, 15.7794, 32, 0.170975, 32, 0.451363, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 0.0348206, 0.158192, 31, 16.06, 31, 32, 0, 32 )
+
+[sub_resource type="TileSet" id=6]
+0/name = "tileset.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( -1, 0, 137, 67 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [  ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "tileset.png 1"
+1/texture = ExtResource( 8 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 15, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 5 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "StartingPoint.png 2"
+2/texture = ExtResource( 6 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 48, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 8 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+3/name = "tileset.png 3"
+3/texture = ExtResource( 8 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 95, 0, 16, 32 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 9 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 9 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
+4/name = "tileset.png 4"
+4/texture = ExtResource( 8 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 64, 32, 31, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape = SubResource( 10 )
+4/shape_one_way = false
+4/shape_one_way_margin = 1.0
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+4/z_index = 0
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+
+[sub_resource type="Animation" id=12]
+resource_name = "SpiderWalking"
+length = 0.7
+loop = true
+
+[node name="Main" type="Node2D"]
+position = Vector2( 1, 0 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_top = -1.0
+margin_right = 959.0
+margin_bottom = 179.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+
+[node name="Skytexture" type="TextureRect" parent="Background"]
+margin_top = -180.0
+margin_right = 959.0
+texture = ExtResource( 7 )
+stretch_mode = 2
+
+[node name="Cloudtexture" type="TextureRect" parent="Background"]
+margin_left = -1.0
+margin_top = -231.0
+margin_right = 810.0
+margin_bottom = -141.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+
+[node name="Sign" type="Sprite" parent="Background"]
+position = Vector2( 378, 145 )
+texture = ExtResource( 9 )
+
+[node name="ShortCave" type="Sprite" parent="."]
+position = Vector2( 143, 86 )
+texture = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="ShortCave"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShortCave/Area2D"]
+position = Vector2( -61, 67 )
+shape = SubResource( 7 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 6 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 655384, 2, 0, 720896, 1, 0, 720897, 1, 0, 720898, 1, 0, 720899, 1, 0, 720900, 1, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 1, 0, 720917, 1, 0, 720918, 1, 0, 720919, 1, 0, 720920, 1, 0, 720921, 1, 0, 720922, 1, 0, 720923, 1, 0, 720924, 1, 0, 720925, 1, 0, 720926, 1, 0, 720927, 1, 0, 720928, 1, 0, 720929, 1, 0, 720930, 1, 0, 720931, 1, 0, 720932, 1, 0, 720933, 1, 0, 720934, 1, 0, 720935, 1, 0, 720936, 1, 0, 720937, 1, 0, 720938, 1, 0, 720939, 1, 0, 720940, 1, 0, 720941, 1, 0, 720942, 1, 0, 720943, 1, 0, 720944, 1, 0, 720945, 1, 0, 720946, 1, 0, 720947, 1, 0, 720948, 1, 0, 720949, 1, 0, 720950, 1, 0, 720951, 1, 0, 720952, 1, 0, 720953, 1, 0, 720954, 1, 0, 720955, 1, 0 )
+
+[node name="Geyseranimation" parent="." instance=ExtResource( 10 )]
+position = Vector2( 276, 144 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Geyseranimation"]
+root_node = NodePath("../..")
+autoplay = "SpiderWalking"
+anims/RESET = SubResource( 11 )
+anims/SpiderWalking = SubResource( 12 )
+
+[node name="Entity" parent="." instance=ExtResource( 2 )]
+position = Vector2( 211, 168 )
+
+[node name="Player" parent="." instance=ExtResource( 11 )]
+position = Vector2( 411, 173 )
+
+[node name="TopLeft" parent="Player/Camera2D/Limits" index="0"]
+position = Vector2( 0, -220 )
+
+[node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
+position = Vector2( 962, 192 )
+
+[connection signal="body_entered" from="ShortCave/Area2D" to="ShortCave/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="ShortCave/Area2D" to="ShortCave/Area2D" method="_on_Area2D_body_exited"]
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
