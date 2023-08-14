@@ -20,7 +20,6 @@ length = 0.001
 [sub_resource type="Animation" id=6]
 resource_name = "RockExplosion"
 length = 0.35
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
 tracks/0/interp = 1
@@ -47,9 +46,9 @@ hframes = 4
 
 [node name="Hitbox" parent="KinematicBody2D" instance=ExtResource( 2 )]
 position = Vector2( 17, 33 )
-collision_layer = 16
+collision_layer = 8
 collision_mask = 32
-damage = 1
+damage = 5
 
 [node name="CollisionShape2D" parent="KinematicBody2D/Hitbox" index="0"]
 position = Vector2( -17, -32 )
@@ -61,7 +60,7 @@ position = Vector2( 1, -2 )
 shape = SubResource( 3 )
 
 [node name="FloorDetector" type="Area2D" parent="KinematicBody2D"]
-collision_layer = 128
+collision_layer = 8
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/FloorDetector"]
@@ -70,6 +69,7 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
 root_node = NodePath("../..")
+playback_speed = 1.5
 anims/RESET = SubResource( 5 )
 anims/RockExplosion = SubResource( 6 )
 

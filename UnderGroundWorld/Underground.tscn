@@ -42,7 +42,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 0/z_index = 0
 
 [node name="Caveentrancebackgroundattempt1" type="Sprite"]
-position = Vector2( 162, 90 )
 texture = ExtResource( 8 )
 script = ExtResource( 2 )
 
@@ -56,36 +55,24 @@ stretch_mode = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, 2 )
+collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -136, 59 )
 shape = SubResource( 3 )
 
-[node name="PlayerNode" type="Node2D" parent="."]
-position = Vector2( 3, -7 )
-
-[node name="Player" parent="PlayerNode" instance=ExtResource( 4 )]
-position = Vector2( -135, 54 )
-z_index = 1
-
-[node name="TopLeft" parent="PlayerNode/Player/Camera2D/Limits" index="0"]
-position = Vector2( 2, 0 )
-
-[node name="BottomRight" parent="PlayerNode/Player/Camera2D/Limits" index="1"]
-position = Vector2( 1200, 188 )
-
-[node name="CollisionShape2D" parent="PlayerNode/Player" index="4"]
-position = Vector2( -3, -29 )
-
 [node name="Cavenode" parent="." instance=ExtResource( 7 )]
 position = Vector2( -210, -36 )
 
 [node name="Spiderden" parent="." instance=ExtResource( 1 )]
-position = Vector2( -36, -88 )
+position = Vector2( -136, -87 )
+
+[node name="SpiderDen" parent="Spiderden" index="0"]
+position = Vector2( 647, 88 )
 
 [node name="Explosionattempt2" parent="Spiderden/AnimationPlayer" index="0"]
-position = Vector2( 219, 140 )
+position = Vector2( 448, 54 )
 
 [node name="Area2dCaveEntrance" type="StaticBody2D" parent="."]
 
@@ -115,9 +102,19 @@ position = Vector2( -10, -21 )
 scale = Vector2( 1, 0.8125 )
 texture = ExtResource( 12 )
 
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( -133, 92 )
+
+[node name="TopLeft" parent="Player/Camera2D/Limits" index="0"]
+position = Vector2( -158, -95 )
+
+[node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
+position = Vector2( 639, 95 )
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
 
-[editable path="PlayerNode/Player"]
-[editable path="PlayerNode/Player/Hurtbox"]
 [editable path="Spiderden"]
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="Player/Hitbox"]

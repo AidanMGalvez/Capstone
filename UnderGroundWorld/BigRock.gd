@@ -15,7 +15,7 @@ func process_player_movement():
 
 func _on_FloorDetector_area_entered(_area):
 	$AnimationPlayer.play("RockExplosion")
-	yield(get_tree().create_timer(.3), "timeout")
+	yield(get_tree().create_timer(.2), "timeout")
 	queue_free()
 	
 

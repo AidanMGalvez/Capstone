@@ -33,8 +33,6 @@ func _on_Area2D_body_entered(_body):
 	var audio = get_parent().get_parent().get_node("SpiderDen/AudioStreamPlayer2D")
 	if audio.playing == false:
 		audio.play()
-	# adds spider key temporary
-	SaveManager.add_spiderkey()
 	
 
 func _on_Area2D_body_exited(_body):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://MainWorld/tileset.png" type="Texture" id=1]
 [ext_resource path="res://SkyWorld/CloudGate.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://SkyWorld/CloudExit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entity.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SkyWorld/SkyBackground.png" type="Texture" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0.132484, 16, 0, 0, 16, 0 )
@@ -63,39 +64,48 @@ load_path = "res://.import/CloudCover.png-162baea92253f0a5fb25ac312fb5b172.stex"
 position = Vector2( 160, 90 )
 texture = ExtResource( 2 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="CloudBackground" type="TextureRect" parent="."]
+margin_left = 160.0
+margin_top = -90.0
+margin_right = 749.0
+margin_bottom = 90.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+
+[node name="TileMap" type="TileMap" parent="CloudBackground"]
+position = Vector2( -160, 90 )
 tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
 tile_data = PoolIntArray( 196598, 1, 0, 196599, 1, 0, 196600, 1, 0, 196601, 1, 0, 196602, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 131092, 1, 0, 131093, 1, 0, 131094, 1, 0, 131095, 1, 0, 131096, 1, 0, 131097, 1, 0, 131098, 1, 0, 131099, 1, 0, 131100, 1, 0, 131101, 1, 0, 131102, 1, 0, 131103, 1, 0, 131104, 1, 0, 131105, 1, 0, 131106, 1, 0, 131107, 1, 0, 131108, 1, 0 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 160.0
-margin_top = -90.0
-margin_right = 707.0
-margin_bottom = 90.0
-texture = ExtResource( 3 )
+[node name="BlueSky" type="TextureRect" parent="CloudBackground"]
+margin_left = -320.0
+margin_top = 180.0
+margin_right = 588.0
+margin_bottom = 441.0
+texture = ExtResource( 7 )
 stretch_mode = 2
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 520, 42 )
 
 [node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
-position = Vector2( 910, 305 )
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-margin_left = 215.0
-margin_top = 11.0
-margin_right = 621.0
-margin_bottom = 101.0
-texture = SubResource( 3 )
-stretch_mode = 2
+position = Vector2( 908, 266 )
 
 [node name="Entity" parent="." instance=ExtResource( 6 )]
 position = Vector2( 473, 19 )
 
-[node name="Node2D" parent="." instance=ExtResource( 4 )]
+[node name="FrontClouds" type="TextureRect" parent="."]
+margin_left = -160.0
+margin_top = 11.0
+margin_right = 749.0
+margin_bottom = 101.0
+texture = SubResource( 3 )
+stretch_mode = 2
+
+[node name="ElevatorCloud" parent="." instance=ExtResource( 4 )]
 position = Vector2( 648, 5 )
 
 [editable path="Player"]

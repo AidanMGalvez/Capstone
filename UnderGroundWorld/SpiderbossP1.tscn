@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 0 ]
 }
 
-[node name="GlobalControl" type="Node2D"]
+[node name="SpiderBossEntrance" type="Node2D"]
 
 [node name="SpiderDen" type="Sprite" parent="."]
 position = Vector2( 161, 91 )
