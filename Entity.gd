@@ -23,4 +23,7 @@ func die():
 func _on_Hurtbox_area_entered(hitbox):
 	var base_damage = hitbox.damage
 	self.hp -= base_damage
+	print(self.hp)
+	if self.hp < 0:
+		die()
 	

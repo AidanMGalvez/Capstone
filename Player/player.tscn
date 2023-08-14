@@ -1,12 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Player/Walkinganimation.png" type="Texture" id=1]
+[ext_resource path="res://Player/Playersheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/player.gd" type="Script" id=2]
 [ext_resource path="res://UI/Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://Hurtbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Player/Sword.png" type="Texture" id=6]
-[ext_resource path="res://Player/swing.png" type="Texture" id=7]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=6]
 resource_name = "IdleLeft"
@@ -56,6 +55,66 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -19, -30 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 21 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 138, -43 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "RunLeft"
@@ -89,51 +148,11 @@ tracks/0/keys = {
 "values": [ 4, 3, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=7]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Swing:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Swing:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "swing"
+[sub_resource type="Animation" id=13]
+resource_name = "Shield"
 length = 0.5
-loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -141,32 +160,88 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 30.0, 60.0, 90.0, 120.0 ]
+"update": 1,
+"values": [ 16, 17, 18, 19, 20 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "SwingSwordLeft"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Swing:rotation_degrees")
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ Vector2( 98, -43 ), Vector2( 98, -43 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Swing:visible")
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "SwingSwordRight"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 138, -43 ), Vector2( 138, -43 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=9]
@@ -175,6 +250,10 @@ extents = Vector2( 7.25, 15 )
 [sub_resource type="CapsuleShape2D" id=10]
 radius = 8.0
 height = 18.0
+
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 11.0
+height = 14.0
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_mask = 6
@@ -186,31 +265,20 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -3, -30 )
 texture = ExtResource( 1 )
-hframes = 10
+hframes = 21
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IdleRight"
+reset_on_save = false
 anims/IdleLeft = SubResource( 6 )
 anims/IdleRight = SubResource( 5 )
 anims/RESET = SubResource( 2 )
 anims/RunLeft = SubResource( 4 )
 anims/RunRight = SubResource( 3 )
-
-[node name="Sword" type="Sprite" parent="."]
-visible = false
-position = Vector2( 7, -32 )
-scale = Vector2( 0.625, 0.625 )
-z_index = 1
-texture = ExtResource( 6 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sword"]
-autoplay = "swing"
-anims/RESET = SubResource( 7 )
-anims/swing = SubResource( 8 )
-
-[node name="Swing" type="Sprite" parent="Sword"]
-visible = false
-position = Vector2( -10.1282, -1.54256 )
-texture = ExtResource( 7 )
+anims/Shield = SubResource( 13 )
+anims/SwingSwordLeft = SubResource( 11 )
+anims/SwingSwordRight = SubResource( 12 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -45 )
@@ -233,12 +301,23 @@ position = Vector2( -24, -3 )
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 position = Vector2( -294, 55 )
 collision_layer = 32
-collision_mask = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 291, -85 )
 shape = SubResource( 10 )
 
+[node name="Hitbox" parent="." instance=ExtResource( 6 )]
+position = Vector2( -121, 14 )
+collision_layer = 16
+collision_mask = 128
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 138, -43 )
+shape = SubResource( 14 )
+disabled = true
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]
+[editable path="Hitbox"]

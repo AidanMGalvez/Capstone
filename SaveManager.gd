@@ -25,3 +25,10 @@ func add_cloudkey():
 var earthkey=0
 func add_earthkey():
 	earthkey += 1
+
+var hp = 100
+func save_health():
+	print(hp)
+
+var playerdirection = 0
+
