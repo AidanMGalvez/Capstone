@@ -20,5 +20,7 @@ func _process(_delta):
 			Rwall.disabled = false
 			anim = get_parent().get_node("AnimationPlayer")
 			anim.play("MovingDown")
-
+			SaveManager.movement = 1
+			
+			
 

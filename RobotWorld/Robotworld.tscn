@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RobotWorld/newrobotroom.png" type="Texture" id=1]
+[ext_resource path="res://RobotWorld/robotwall.png" type="Texture" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Robotwall" type="Sprite" parent="."]
+position = Vector2( 160, 89 )
+texture = ExtResource( 2 )
+
+[node name="Newrobotroom" type="Sprite" parent="."]
+position = Vector2( 315, 90 )
+texture = ExtResource( 1 )

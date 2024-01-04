@@ -12,4 +12,5 @@ func _on_SceneChange_body_exited(_body):
 func _process(_delta):
 	if entered == true:
 		change_scene = get_tree().change_scene("res://MainWorld/Main.tscn")
+		SaveManager.LeaveSky = true
 
