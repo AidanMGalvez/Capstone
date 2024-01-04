@@ -55,11 +55,10 @@ stretch_mode = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, 2 )
-collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -136, 59 )
+position = Vector2( -136, 55 )
 shape = SubResource( 3 )
 
 [node name="Cavenode" parent="." instance=ExtResource( 7 )]
@@ -69,10 +68,10 @@ position = Vector2( -210, -36 )
 position = Vector2( -136, -87 )
 
 [node name="SpiderDen" parent="Spiderden" index="0"]
-position = Vector2( 647, 88 )
+position = Vector2( 743, 92 )
 
 [node name="Explosionattempt2" parent="Spiderden/AnimationPlayer" index="0"]
-position = Vector2( 448, 54 )
+position = Vector2( 539, 69 )
 
 [node name="Area2dCaveEntrance" type="StaticBody2D" parent="."]
 

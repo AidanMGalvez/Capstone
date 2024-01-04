@@ -15,6 +15,7 @@ func _process(_delta):
 			$SpiderChestEmpty.visible = true
 			$SpiderChestOpen.visible = false
 			SaveManager.add_spiderkey()
+			SaveManager.coins += 45
 			
 
 func _on_Hurtbox_area_entered(_hitbox):

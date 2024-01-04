@@ -46,7 +46,7 @@ hframes = 4
 
 [node name="Hitbox" parent="KinematicBody2D" instance=ExtResource( 2 )]
 position = Vector2( 17, 33 )
-collision_layer = 8
+collision_layer = 0
 collision_mask = 32
 damage = 5
 

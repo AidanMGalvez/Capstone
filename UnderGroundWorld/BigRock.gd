@@ -11,7 +11,7 @@ func _physics_process(_delta):
 		
 func process_player_movement():
 	velocity.y += GRAVITY
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 
 func _on_FloorDetector_area_entered(_area):
 	$AnimationPlayer.play("RockExplosion")

@@ -271,7 +271,7 @@ position = Vector2( 902, 99 )
 texture = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( -327, 155 )
+position = Vector2( -187, 140 )
 z_index = 1
 
 [node name="TopLeft" parent="Player/Camera2D/Limits" index="0"]
