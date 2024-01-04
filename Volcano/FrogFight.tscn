@@ -1,0 +1,168 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://MainWorld/tileset.png" type="Texture" id=1]
+[ext_resource path="res://MainWorld/StartingPoint.png" type="Texture" id=2]
+[ext_resource path="res://Volcano/frogfightbackground.png" type="Texture" id=3]
+[ext_resource path="res://Volcano/Fwog-Recovered.png" type="Texture" id=4]
+[ext_resource path="res://Player/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Volcano/FrogFight.gd" type="Script" id=6]
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( 16, 16, 0.0333519, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+points = PoolVector2Array( 0, 16, 14.9237, 0, 32.6429, 0, 48, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+points = PoolVector2Array( 16, 16.2633, 15.7794, 32, 0.170975, 32, 0.451363, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+points = PoolVector2Array( 0.0348206, 0.158192, 31, 16.06, 31, 32, 0, 32 )
+
+[sub_resource type="TileSet" id=17]
+0/name = "tileset.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( -1, 0, 137, 67 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [  ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "tileset.png 1"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 15, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 13 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 13 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "StartingPoint.png 2"
+2/texture = ExtResource( 2 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 48, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 14 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 14 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+3/name = "tileset.png 3"
+3/texture = ExtResource( 1 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 95, 0, 16, 32 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 15 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 15 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
+4/name = "tileset.png 4"
+4/texture = ExtResource( 1 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 64, 32, 31, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape = SubResource( 16 )
+4/shape_one_way = false
+4/shape_one_way_margin = 1.0
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 16 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+4/z_index = 0
+
+[sub_resource type="CapsuleShape2D" id=18]
+height = 185.628
+
+[node name="FrogFight" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Frogfightbackground" type="TextureRect" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Fwog-Recovered" type="Sprite" parent="."]
+position = Vector2( 728, 634 )
+texture = ExtResource( 4 )
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = 1
+tile_set = SubResource( 17 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, -65524, 1, 0, -65523, 1, 0, -65522, 1, 0, -65521, 1, 0, -65520, 1, 0, -65519, 1, 0, -65518, 1, 0, -65517, 1, 0, -65516, 1, 0, -65515, 1, 0, -65514, 1, 0, -65513, 1, 0, -65512, 1, 0, -65511, 1, 0, -65510, 1, 0, -65509, 1, 0, -65508, 1, 0, -65507, 1, 0, -65506, 1, 0, -65505, 1, 0, -65504, 1, 0, -65503, 1, 0, -65502, 1, 0, -65501, 1, 0, -65500, 1, 0, -65499, 1, 0, -65498, 1, 0, -65497, 1, 0, -65496, 1, 0, -65495, 1, 0, -65494, 1, 0, -65493, 1, 0, -65492, 1, 0, -65491, 1, 0, -65490, 1, 0, -65489, 1, 0, -65488, 1, 0, -65487, 1, 0, -65486, 1, 0, -65485, 1, 0, -65484, 1, 0, -65483, 1, 0, -65482, 1, 0, -65481, 1, 0, -65480, 1, 0, -65479, 1, 0, -65478, 1, 0, -65477, 1, 0, -65476, 1, 0, 65535, 1, 0, 60, 1, 0, 131071, 1, 0, 65596, 1, 0, 196607, 1, 0, 131132, 1, 0, 262143, 1, 0, 196668, 1, 0, 327679, 1, 0, 262204, 1, 0, 393215, 1, 0, 327740, 1, 0, 458751, 1, 0, 393276, 1, 0, 524287, 1, 0, 458812, 1, 0, 589823, 1, 0, 524348, 1, 0, 655359, 1, 0, 589884, 1, 0, 720895, 1, 0, 655420, 1, 0, 786431, 1, 0, 720956, 1, 0, 851967, 1, 0, 786492, 1, 0, 917503, 1, 0, 852028, 1, 0, 983039, 1, 0, 917564, 1, 0, 1048575, 1, 0, 983100, 1, 0, 1114111, 1, 0, 1048636, 1, 0, 1179647, 1, 0, 1114172, 1, 0, 1245183, 1, 0, 1179708, 1, 0, 1310719, 1, 0, 1245244, 1, 0, 1376255, 1, 0, 1310780, 1, 0, 1441791, 1, 0, 1376316, 1, 0, 1507327, 1, 0, 1441852, 1, 0, 1572863, 1, 0, 1507388, 1, 0, 1638399, 1, 0, 1572924, 1, 0, 1703935, 1, 0, 1638460, 1, 0, 1769471, 1, 0, 1703996, 1, 0, 1835007, 1, 0, 1769532, 1, 0, 1900543, 1, 0, 1835068, 1, 0, 1966079, 1, 0, 1900604, 1, 0, 2031615, 1, 0, 1966140, 1, 0, 2097151, 1, 0, 2031676, 1, 0, 2162687, 1, 0, 2097212, 1, 0, 2228223, 1, 0, 2162748, 1, 0, 2293759, 1, 0, 2228284, 1, 0, 2359295, 1, 0, 2293820, 1, 0, 2424831, 1, 0, 2359356, 1, 0, 2490367, 1, 0, 2424892, 1, 0, 2555903, 1, 0, 2490428, 1, 0, 2621439, 1, 0, 2555964, 1, 0, 2686975, 1, 0, 2621500, 1, 0, 2752511, 1, 0, 2687036, 1, 0, 2818047, 1, 0, 2752572, 1, 0, 2883583, 1, 0, 2818108, 1, 0, 2949119, 1, 0, 2883644, 1, 0, 3014655, 1, 0, 2949120, 1, 0, 2949121, 1, 0, 2949122, 1, 0, 2949123, 1, 0, 2949124, 1, 0, 2949125, 1, 0, 2949126, 1, 0, 2949127, 1, 0, 2949128, 1, 0, 2949129, 1, 0, 2949130, 1, 0, 2949131, 1, 0, 2949132, 1, 0, 2949133, 1, 0, 2949134, 1, 0, 2949135, 1, 0, 2949136, 1, 0, 2949137, 1, 0, 2949138, 1, 0, 2949139, 1, 0, 2949140, 1, 0, 2949141, 1, 0, 2949142, 1, 0, 2949143, 1, 0, 2949144, 1, 0, 2949145, 1, 0, 2949146, 1, 0, 2949147, 1, 0, 2949148, 1, 0, 2949149, 1, 0, 2949150, 1, 0, 2949151, 1, 0, 2949152, 1, 0, 2949153, 1, 0, 2949154, 1, 0, 2949155, 1, 0, 2949156, 1, 0, 2949157, 1, 0, 2949158, 1, 0, 2949159, 1, 0, 2949160, 1, 0, 2949161, 1, 0, 2949162, 1, 0, 2949163, 1, 0, 2949164, 1, 0, 2949165, 1, 0, 2949166, 1, 0, 2949167, 1, 0, 2949168, 1, 0, 2949169, 1, 0, 2949170, 1, 0, 2949171, 1, 0, 2949172, 1, 0, 2949173, 1, 0, 2949174, 1, 0, 2949175, 1, 0, 2949176, 1, 0, 2949177, 1, 0, 2949178, 1, 0, 2949179, 1, 0, 2949180, 1, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 22.9142, 725.355 )
+
+[node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
+position = Vector2( 960.011, 720.001 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 448.289, 616.949 )
+shape = SubResource( 18 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="Player/Hitbox"]

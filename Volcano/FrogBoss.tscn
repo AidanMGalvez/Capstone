@@ -1,0 +1,404 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Volcano/uglavabackground.png" type="Texture" id=2]
+[ext_resource path="res://Volcano/FrogBoss.gd" type="Script" id=3]
+[ext_resource path="res://Volcano/frogbody.png" type="Texture" id=4]
+[ext_resource path="res://Volcano/frogbossrow.png" type="Texture" id=5]
+[ext_resource path="res://Volcano/Froghead.png" type="Texture" id=6]
+[ext_resource path="res://Volcano/froglegs.png" type="Texture" id=7]
+[ext_resource path="res://Volcano/stairs.png" type="Texture" id=8]
+[ext_resource path="res://Volcano/door.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 185.517, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 0.554455, 10.1975 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 2.97229, 43.3585 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 23.5966
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 8.0064, 24.5664 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 6.36623
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 19.1351, 23.781 )
+
+[node name="FrogBoss" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 45, 135 )
+z_index = 1
+
+[node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
+position = Vector2( 488.291, 744.099 )
+
+[node name="FirstRoom" type="TextureRect" parent="."]
+margin_top = 77.0
+margin_right = 490.0
+margin_bottom = 133.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+
+[node name="Walls" type="StaticBody2D" parent="FirstRoom"]
+position = Vector2( 244, -33 )
+scale = Vector2( 1.51875, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstRoom/Walls"]
+position = Vector2( -12.0693, 86.5118 )
+scale = Vector2( 0.81, 1 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FirstRoom/Walls"]
+position = Vector2( 25.0109, 31.7917 )
+z_index = 3
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="FirstRoom/Walls"]
+position = Vector2( -160.186, 58.6474 )
+scale = Vector2( 1, 2.5 )
+shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FirstRoom/Walls"]
+position = Vector2( -0.495926, -0.0723419 )
+polygon = PoolVector2Array( 138.628, 84.1087, 205.703, 110.846, 205.194, 114.222, 138.527, 88.8849 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="FirstRoom/Walls"]
+position = Vector2( 207.383, 73.2992 )
+shape = SubResource( 3 )
+
+[node name="Uglavabackground" type="Sprite" parent="FirstRoom"]
+position = Vector2( 246.202, 89.5973 )
+scale = Vector2( 1.5401, 0.373539 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Uglavabackground2" type="Sprite" parent="FirstRoom"]
+position = Vector2( 244.917, -38.1759 )
+scale = Vector2( 1.53292, 0.431012 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Firstarea" type="Area2D" parent="FirstRoom"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstRoom/Firstarea"]
+position = Vector2( 529.784, 46.0862 )
+shape = SubResource( 4 )
+
+[node name="Door" type="Sprite" parent="FirstRoom"]
+position = Vector2( 4, 25.5894 )
+scale = Vector2( 1.55559, 0.941536 )
+z_index = 2
+texture = ExtResource( 9 )
+
+[node name="Door" type="Area2D" parent="FirstRoom/Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstRoom/Door/Door"]
+position = Vector2( 6.94127, 1.19712 )
+shape = SubResource( 7 )
+
+[node name="SecondRoom" type="TextureRect" parent="."]
+margin_left = -0.0425339
+margin_top = 240.89
+margin_right = 489.957
+margin_bottom = 296.89
+texture = ExtResource( 6 )
+stretch_mode = 2
+
+[node name="Walls" type="StaticBody2D" parent="SecondRoom"]
+position = Vector2( 244, -33 )
+scale = Vector2( 1.51875, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecondRoom/Walls"]
+position = Vector2( -11.1223, 86.5534 )
+scale = Vector2( 0.81, 1 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SecondRoom/Walls"]
+position = Vector2( 43.421, 30.9146 )
+scale = Vector2( 0.9, 1 )
+z_index = 3
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SecondRoom/Walls"]
+position = Vector2( -169.578, 44.2344 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="SecondRoom/Walls"]
+position = Vector2( -149.383, 4.89854 )
+rotation = 1.5708
+scale = Vector2( 1, 3 )
+z_index = 3
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="SecondRoom/Walls"]
+position = Vector2( -122.856, 17.8329 )
+scale = Vector2( 1, 1.3 )
+z_index = 3
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="SecondRoom/Walls"]
+position = Vector2( -179.346, 24.7703 )
+scale = Vector2( 1, 2 )
+shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SecondRoom/Walls"]
+position = Vector2( -0.495926, -0.0723419 )
+polygon = PoolVector2Array( 138.628, 84.1087, 205.703, 110.846, 205.194, 114.222, 138.527, 88.8849 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="SecondRoom/Walls"]
+position = Vector2( 207.383, 73.2992 )
+shape = SubResource( 3 )
+
+[node name="Uglavabackground" type="Sprite" parent="SecondRoom"]
+position = Vector2( 246.202, 89.5973 )
+scale = Vector2( 1.5401, 0.373539 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Uglavabackground2" type="Sprite" parent="SecondRoom"]
+position = Vector2( 245.197, -38.7378 )
+scale = Vector2( 1.53292, 0.431012 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Secondarea" type="Area2D" parent="SecondRoom"]
+position = Vector2( -7.81464, 1.11223 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecondRoom/Secondarea"]
+position = Vector2( 537.126, 44.7514 )
+shape = SubResource( 4 )
+
+[node name="ReturnTofirst" type="Area2D" parent="SecondRoom"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecondRoom/ReturnTofirst"]
+position = Vector2( -18.2757, -2.91351 )
+shape = SubResource( 5 )
+
+[node name="ThirdRoom" type="TextureRect" parent="."]
+margin_left = 0.407036
+margin_top = 440.469
+margin_right = 490.407
+margin_bottom = 496.469
+texture = ExtResource( 4 )
+stretch_mode = 2
+
+[node name="Walls" type="StaticBody2D" parent="ThirdRoom"]
+position = Vector2( 244, -33 )
+scale = Vector2( 1.51875, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThirdRoom/Walls"]
+position = Vector2( -11.1223, 86.5534 )
+scale = Vector2( 0.82, 1 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ThirdRoom/Walls"]
+position = Vector2( 43.4565, 30.8658 )
+scale = Vector2( 0.9, 1 )
+z_index = 3
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ThirdRoom/Walls"]
+position = Vector2( -170.876, 44.6404 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="ThirdRoom/Walls"]
+position = Vector2( -180.326, 24.6905 )
+scale = Vector2( 1, 2 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="ThirdRoom/Walls"]
+position = Vector2( -122.846, 15.9261 )
+scale = Vector2( 1, 1.3 )
+z_index = 3
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="ThirdRoom/Walls"]
+position = Vector2( -150.361, 4.19595 )
+rotation = 1.5708
+scale = Vector2( 1, 3 )
+z_index = 3
+shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ThirdRoom/Walls"]
+position = Vector2( -0.495926, -0.0723419 )
+polygon = PoolVector2Array( 138.628, 84.1087, 205.703, 110.846, 205.194, 114.222, 138.527, 88.8849 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ThirdRoom/Walls"]
+position = Vector2( 207.383, 73.2992 )
+shape = SubResource( 3 )
+
+[node name="Uglavabackground" type="Sprite" parent="ThirdRoom"]
+position = Vector2( 246.202, 89.5974 )
+scale = Vector2( 1.5401, 0.373539 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Uglavabackground2" type="Sprite" parent="ThirdRoom"]
+position = Vector2( 244.917, -38.1759 )
+scale = Vector2( 1.53292, 0.431012 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Thirdarea" type="Area2D" parent="ThirdRoom"]
+position = Vector2( -9.32366, -0.231689 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThirdRoom/Thirdarea"]
+position = Vector2( 537.126, 44.7514 )
+shape = SubResource( 4 )
+
+[node name="ReturnToSecond" type="Area2D" parent="ThirdRoom"]
+position = Vector2( -0.13707, -199.579 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThirdRoom/ReturnToSecond"]
+position = Vector2( -20.8995, 197.042 )
+shape = SubResource( 5 )
+
+[node name="FourthRoom" type="TextureRect" parent="."]
+margin_left = -2.32484
+margin_top = 632.726
+margin_right = 487.675
+margin_bottom = 688.726
+texture = ExtResource( 7 )
+stretch_mode = 2
+
+[node name="Walls" type="StaticBody2D" parent="FourthRoom"]
+position = Vector2( 244, -33 )
+scale = Vector2( 1.51875, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FourthRoom/Walls"]
+position = Vector2( 1.62538, 86.3545 )
+scale = Vector2( 0.87, 1 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FourthRoom/Walls"]
+position = Vector2( 24.7331, 30.8591 )
+scale = Vector2( 0.76, 1 )
+z_index = 3
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="FourthRoom/Walls"]
+position = Vector2( -169.236, 43.9469 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="FourthRoom/Walls"]
+position = Vector2( -145.899, 4.1824 )
+rotation = 1.5708
+scale = Vector2( 1, 3.3 )
+z_index = 3
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="FourthRoom/Walls"]
+position = Vector2( -179.174, 24.3135 )
+scale = Vector2( 1, 2 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="FourthRoom/Walls"]
+position = Vector2( -116.804, 17.8318 )
+scale = Vector2( 1, 1.3 )
+z_index = 3
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="FourthRoom/Walls"]
+position = Vector2( 164.998, 72.7046 )
+shape = SubResource( 3 )
+
+[node name="Uglavabackground" type="Sprite" parent="FourthRoom"]
+position = Vector2( 248.202, 89.5974 )
+scale = Vector2( 1.5401, 0.373539 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Uglavabackground2" type="Sprite" parent="FourthRoom"]
+position = Vector2( 246.917, -38.1759 )
+scale = Vector2( 1.53292, 0.431012 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="ReturnToThird" type="Area2D" parent="FourthRoom"]
+position = Vector2( 2.59481, -391.836 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FourthRoom/ReturnToThird"]
+position = Vector2( -20.6663, 392.305 )
+shape = SubResource( 5 )
+
+[node name="GoToBoss" type="Area2D" parent="FourthRoom"]
+position = Vector2( 2.59481, -391.836 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FourthRoom/GoToBoss"]
+position = Vector2( 467.558, 418.072 )
+shape = SubResource( 6 )
+
+[node name="Stairs" type="YSort" parent="."]
+
+[node name="Stairs" type="Sprite" parent="Stairs"]
+position = Vector2( 14.2056, 277.864 )
+texture = ExtResource( 8 )
+offset = Vector2( 8.4741, -5.83008 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stairs/Stairs"]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stairs/Stairs/StaticBody2D"]
+polygon = PoolVector2Array( -14.1379, -26.2959, 37.4511, 14.3763, -13.9796, 14.3877 )
+
+[node name="Stairs2" type="Sprite" parent="Stairs"]
+position = Vector2( 14.1012, 477.383 )
+texture = ExtResource( 8 )
+offset = Vector2( 8.4741, -5.83008 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stairs/Stairs2"]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stairs/Stairs2/StaticBody2D"]
+polygon = PoolVector2Array( -14.1379, -26.2959, 37.4511, 14.3763, -13.9796, 14.3877 )
+
+[node name="Stairs3" type="Sprite" parent="Stairs"]
+position = Vector2( 14.2624, 669.555 )
+texture = ExtResource( 8 )
+offset = Vector2( 8.4741, -5.83008 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stairs/Stairs3"]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stairs/Stairs3/StaticBody2D"]
+polygon = PoolVector2Array( -14.1379, -26.2959, 37.4511, 14.3763, -13.9796, 14.3877 )
+
+[connection signal="body_entered" from="FirstRoom/Firstarea" to="." method="_on_Firstarea_body_entered"]
+[connection signal="body_exited" from="FirstRoom/Firstarea" to="." method="_on_Firstarea_body_exited"]
+[connection signal="body_entered" from="FirstRoom/Door/Door" to="." method="_on_Door_body_entered"]
+[connection signal="body_exited" from="FirstRoom/Door/Door" to="." method="_on_Door_body_exited"]
+[connection signal="body_entered" from="SecondRoom/Secondarea" to="." method="_on_Secondarea_body_entered"]
+[connection signal="body_exited" from="SecondRoom/Secondarea" to="." method="_on_Secondarea_body_exited"]
+[connection signal="body_entered" from="SecondRoom/ReturnTofirst" to="." method="_on_ReturnTofirst_body_entered"]
+[connection signal="body_exited" from="SecondRoom/ReturnTofirst" to="." method="_on_ReturnTofirst_body_exited"]
+[connection signal="body_entered" from="ThirdRoom/Thirdarea" to="." method="_on_Thirdarea_body_entered"]
+[connection signal="body_exited" from="ThirdRoom/Thirdarea" to="." method="_on_Thirdarea_body_exited"]
+[connection signal="body_entered" from="ThirdRoom/ReturnToSecond" to="." method="_on_ReturnToSecond_body_entered"]
+[connection signal="body_exited" from="ThirdRoom/ReturnToSecond" to="." method="_on_ReturnToSecond_body_exited"]
+[connection signal="body_entered" from="FourthRoom/ReturnToThird" to="." method="_on_ReturnToThird_body_entered"]
+[connection signal="body_exited" from="FourthRoom/ReturnToThird" to="." method="_on_ReturnToThird_body_exited"]
+[connection signal="body_entered" from="FourthRoom/GoToBoss" to="." method="_on_GoToBoss_body_entered"]
+[connection signal="body_exited" from="FourthRoom/GoToBoss" to="." method="_on_GoToBoss_body_exited"]
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="Player/Hitbox"]

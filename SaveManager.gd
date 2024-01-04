@@ -1,5 +1,6 @@
 extends Node
 # Main scene
+var rand = RandomNumberGenerator.new()
 
 # Underground scene
 var Spider=0
@@ -30,5 +31,30 @@ var hp = 100
 func save_health():
 	print(hp)
 
-var playerdirection = 0
+func spider_died():
+	var randomcoinamount = rand.randi_range(2,7)
+	coins += randomcoinamount
+	spiderlegcount += 1
 
+var playerdirection = 0
+var movement = 0
+var blockjump = false
+#shop and inventory
+var coins = 0
+var daggercount = 10
+var spiderlegcount = 0
+var wood = 0
+var cloud = 0
+var volcanicrock= 0
+var amethyst = 0
+var spiderhealth = 40
+# position on scene change
+var LeaveShop = false
+var LeaveMagic = false
+var LeaveSky = false
+var initialized = false
+var failedjump = false
+var LeaveParkour = false
+var useslingshot = false
+var falling = false
+var leavefrog = false
