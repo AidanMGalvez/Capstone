@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const JUMP_POWER= -130
 const JUMP_RELEASE= -80
-const MAX_SPEED = 60
+const MAX_SPEED = 100
 const FRICTION = 40
 const ACCELERATION = 20
 const GRAVITY = 4
@@ -17,14 +17,67 @@ var isButtonHeldright = false
 var isButtonHeldleft = false
 var facingright = true
 var facingleft = false
-var dagger = load("res://PlayerDagger.tscn")
+var dagger = load("res://Player/PlayerDagger.tscn")
 var can_throw_dagger = true
+var shieldup = false
+var tween : Tween
 
 func _physics_process(_delta):
+	if SaveManager.movement == 1:
+		movement_enabled = false
+		$AnimationPlayer.stop()
+	if SaveManager.movement == 0:
+			movement_enabled = true
+			SaveManager.movement += 3
 	if movement_enabled:
 		process_player_movement()
 	load_hp()
-
+	if !movement_enabled:
+		apply_gravity()
+		
+	if SaveManager.LeaveShop == true:
+		position = Vector2(570, 190)
+		SaveManager.LeaveShop = false
+	if SaveManager.LeaveMagic == true:
+		position = Vector2(770, 190)
+		SaveManager.LeaveMagic = false
+	if SaveManager.LeaveSky == true:
+		position = Vector2(900,-20)
+		SaveManager.LeaveSky = false
+	if SaveManager.failedjump == true:
+		position = Vector2(160,152)
+		SaveManager.failedjump = false
+	if SaveManager.LeaveParkour == true:
+		position = Vector2(-90,30)
+		SaveManager.LeaveParkour = false
+		
+	if SaveManager.useslingshot == true:
+		position = Vector2(1850,170)
+		scale = Vector2(0.8,0.8)
+		tween = Tween.new()
+		add_child(tween)
+# warning-ignore:return_value_discarded
+		tween.interpolate_property(self, "position", position, Vector2(1770, 35), 0.8, Tween.TRANS_LINEAR)
+# warning-ignore:return_value_discarded
+		tween.interpolate_property(self, "scale", scale, Vector2(0.3, 0.3), 1, Tween.TRANS_LINEAR)
+# warning-ignore:return_value_discarded
+		tween.interpolate_property(self, "rotation", rotation, rotation + 5, 1, Tween.TRANS_LINEAR)
+# warning-ignore:return_value_discarded
+		tween.start()
+		SaveManager.useslingshot = false
+	
+	if SaveManager.falling == true:
+		rotation_degrees += 362.5
+		yield(get_tree().create_timer(5), "timeout")
+		rotation_degrees -= 1
+		if rotation_degrees <= 0:
+			rotation_degrees = 0
+	
+	if SaveManager.leavefrog == true:
+		position = Vector2(460,1125)
+		SaveManager.leavefrog = false
+		
+	
 func process_player_movement():
 	velocity.y += GRAVITY
 	var input = Vector2.ZERO
@@ -35,8 +88,9 @@ func process_player_movement():
 		facingright = true
 		facingleft = false
 		$AnimationPlayer.play("RunRight")
+		disableshield()
 	else:
-		if isButtonHeldright:
+		if isButtonHeldright and !shieldup:
 			$AnimationPlayer.play("IdleRight")
 		isButtonHeldright = false
 	
@@ -45,12 +99,13 @@ func process_player_movement():
 		facingleft = true
 		facingright = false
 		$AnimationPlayer.play("RunLeft")
+		disableshield()
 	else:
-		if isButtonHeldleft:
+		if isButtonHeldleft and !shieldup:
 			$AnimationPlayer.play("IdleLeft")
 		isButtonHeldleft = false
 
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and $Area2D/ShieldBlock.disabled == true:
 		if facingright == true and facingleft == false:
 			movement_enabled = false
 			$AnimationPlayer.play("SwingSwordRight")
@@ -64,11 +119,26 @@ func process_player_movement():
 			$AnimationPlayer.play("IdleLeft")
 			movement_enabled = true
 	
-	if Input.is_action_just_pressed("Projectile") and can_throw_dagger:
+	if Input.is_action_just_pressed("Wall"):
+		shieldup = true
+		movement_enabled = false
+		if facingright == true and facingleft == false:
+			$AnimationPlayer.play("ShieldRight")
+		else:
+			$AnimationPlayer.play("ShieldLeft")
+		yield(get_tree().create_timer(.5), "timeout")
+		movement_enabled = true
+		
+	if Input.is_action_just_pressed("Projectile") and can_throw_dagger and SaveManager.daggercount != 0:
+		if $Area2D/ShieldBlock.disabled == false:  
+			return
 		if facingright == true and facingleft == false:
 			SaveManager.playerdirection = 1
 		if facingright == false and facingleft == true:
 			SaveManager.playerdirection = 0
+		SaveManager.daggercount -= 1
+		if SaveManager.daggercount == -1:
+			return
 
 		var new_dagger = dagger.instance()
 		new_dagger.global_position = global_position  
@@ -79,9 +149,6 @@ func process_player_movement():
 		yield(get_tree().create_timer(1), "timeout")
 		can_throw_dagger = true
 		
-	if Input.is_action_just_pressed("Wall"):
-		$AnimationPlayer.play("Shield")
-	
 	if input.x == 0:
 		apply_friction()
 	else:
@@ -89,7 +156,7 @@ func process_player_movement():
 		
 	if is_on_floor():
 		fast_fall = false
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_just_pressed("ui_up") and $Area2D/ShieldBlock.disabled == true and SaveManager.blockjump != true:
 			velocity.y = JUMP_POWER
 	else:
 		if Input.is_action_just_released("ui_up") and velocity.y < JUMP_RELEASE:
@@ -108,9 +175,10 @@ func apply_acceleration(amount):
 	velocity.x = move_toward(velocity.x, MAX_SPEED * amount, ACCELERATION)
 	pass
 
-func _input(event):
-	if event.is_action_pressed("Inventory"):
-		movement_enabled = !movement_enabled
+func apply_gravity():
+	velocity.y += GRAVITY
+	velocity.x = 0
+	velocity = move_and_slide(velocity)
 
 func _on_Hurtbox_area_entered(hitbox):
 	var base_damage = hitbox.damage
@@ -126,3 +194,16 @@ func die():
 	
 func load_hp():
 	$Health/CanvasLayer/Healthfull.value = self.hp
+
+func disableshield():
+	if $Area2D/ShieldBlock.disabled == false:
+		movement_enabled = false
+		if facingright == true and facingleft == false:
+			$AnimationPlayer.play_backwards("ShieldRight")
+		else:
+			$AnimationPlayer.play_backwards("ShieldLeft")
+		yield(get_tree().create_timer(.4), "timeout")
+		shieldup = false
+		movement_enabled = true
+	$Area2D/ShieldBlock.disabled = true
+
