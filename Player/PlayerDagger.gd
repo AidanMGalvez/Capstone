@@ -13,7 +13,12 @@ func _physics_process(delta):
 		else:
 			scale.x = abs(scale.x) * -1
 			global_position += SPEED * Vector2.LEFT * delta
-
+			
+	if SaveManager.dagger == true:
+		$Hitbox.damage = 14
+	if SaveManager.dagger == false:
+		$Hitbox.damage = 7
+		
 func destroy():
 	queue_free()
 	

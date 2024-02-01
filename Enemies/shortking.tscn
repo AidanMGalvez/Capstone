@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Hurtbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/shortkingthing.png" type="Texture" id=2]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/shortking.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 26.0768
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23, 5.5 )
+
+[node name="Node2D" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource( 4 )
+
+[node name="Shortkingthing" type="Sprite" parent="."]
+position = Vector2( -1, -4 )
+texture = ExtResource( 2 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 1 )]
+position = Vector2( -23.5536, 17.6913 )
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 26.5536, -20.6913 )
+shape = SubResource( 1 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 3 )]
+position = Vector2( -37.8098, 17.3324 )
+collision_layer = 0
+collision_mask = 32
+damage = 10
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 39.8098, -15.3324 )
+shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 4, -3, 15, -2, 24, 4, 23, 8, 2, 8, -14, 6, -21, 1, -17, -3 )
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

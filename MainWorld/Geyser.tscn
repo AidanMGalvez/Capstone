@@ -146,11 +146,21 @@ position = Vector2( 0, 14 )
 shape = SubResource( 12 )
 
 [node name="SceneChange" type="Area2D" parent="."]
+collision_layer = 0
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChange"]
 position = Vector2( 0, -350 )
 shape = SubResource( 13 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 13.0
+margin_top = 13.0
+margin_right = 124.0
+margin_bottom = 27.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Press Enter to Fly"
 
 [connection signal="body_entered" from="GeyserLaunch" to="GeyserLaunch" method="_on_GeyserLaunch_body_entered"]
 [connection signal="body_exited" from="GeyserLaunch" to="GeyserLaunch" method="_on_GeyserLaunch_body_exited"]

@@ -1,14 +1,13 @@
 extends KinematicBody2D
 
-const JUMP_POWER= -130
 const JUMP_RELEASE= -80
-const MAX_SPEED = 100
 const FRICTION = 40
 const ACCELERATION = 20
 const GRAVITY = 4
 const FALL_FAST = 28
 
-
+var JUMP_POWER= -130
+var MAX_SPEED = 100
 var hp = SaveManager.hp
 var fast_fall = false
 var velocity = Vector2.ZERO
@@ -21,28 +20,39 @@ var dagger = load("res://Player/PlayerDagger.tscn")
 var can_throw_dagger = true
 var shieldup = false
 var tween : Tween
+var change_scene
+
+var jumps = 0
+const MAX_JUMPS = 3
+
+func _ready():
+	SaveManager.playerposition = global_position
 
 func _physics_process(_delta):
+	
+	load_hp()
+	
 	if SaveManager.movement == 1:
 		movement_enabled = false
 		$AnimationPlayer.stop()
 	if SaveManager.movement == 0:
 			movement_enabled = true
 			SaveManager.movement += 3
+			
 	if movement_enabled:
 		process_player_movement()
-	load_hp()
+		
 	if !movement_enabled:
 		apply_gravity()
 		
 	if SaveManager.LeaveShop == true:
-		position = Vector2(570, 190)
+		position = Vector2(880, 190)
 		SaveManager.LeaveShop = false
 	if SaveManager.LeaveMagic == true:
-		position = Vector2(770, 190)
+		position = Vector2(1080, 190)
 		SaveManager.LeaveMagic = false
 	if SaveManager.LeaveSky == true:
-		position = Vector2(900,-20)
+		position = Vector2(725,-20)
 		SaveManager.LeaveSky = false
 	if SaveManager.failedjump == true:
 		position = Vector2(160,152)
@@ -77,6 +87,36 @@ func _physics_process(_delta):
 		position = Vector2(460,1125)
 		SaveManager.leavefrog = false
 		
+	if SaveManager.leaveunderground == true:
+		position = Vector2(90,180)
+		SaveManager.leaveunderground = false
+		
+	if SaveManager.leavewell == true:
+		position = Vector2(1160,180)
+		SaveManager.leavewell = false
+	
+	if SaveManager.leavespiderboss == true:
+		position = Vector2(550,99)
+		SaveManager.leavespiderboss = false
+	
+	if SaveManager.leavecraft == true:
+		position = Vector2(1000,180)
+		SaveManager.leavecraft = false
+	
+		
+	if SaveManager.cloak == true:
+			MAX_SPEED = 150
+			JUMP_POWER = -180
+	if SaveManager.cloak == false:
+			MAX_SPEED = 100
+			JUMP_POWER = -130
+	
+	if SaveManager.sword == true:
+		$Hitbox.damage = 20
+	if SaveManager.sword == false:
+		$Hitbox.damage = 14
+		
+	
 	
 func process_player_movement():
 	velocity.y += GRAVITY
@@ -121,6 +161,13 @@ func process_player_movement():
 	
 	if Input.is_action_just_pressed("Wall"):
 		shieldup = true
+		if SaveManager.shield == true and Input.is_action_just_pressed("Wall"):
+			if facingleft:
+				velocity.x = -2000
+				velocity = move_and_slide(velocity, Vector2.LEFT)
+			if facingright:
+				velocity.x = 2000
+				velocity = move_and_slide(velocity, Vector2.RIGHT)
 		movement_enabled = false
 		if facingright == true and facingleft == false:
 			$AnimationPlayer.play("ShieldRight")
@@ -128,6 +175,7 @@ func process_player_movement():
 			$AnimationPlayer.play("ShieldLeft")
 		yield(get_tree().create_timer(.5), "timeout")
 		movement_enabled = true
+		
 		
 	if Input.is_action_just_pressed("Projectile") and can_throw_dagger and SaveManager.daggercount != 0:
 		if $Area2D/ShieldBlock.disabled == false:  
@@ -156,8 +204,11 @@ func process_player_movement():
 		
 	if is_on_floor():
 		fast_fall = false
+		jumps = 0
+		
 		if Input.is_action_just_pressed("ui_up") and $Area2D/ShieldBlock.disabled == true and SaveManager.blockjump != true:
 			velocity.y = JUMP_POWER
+			jumps += 1
 	else:
 		if Input.is_action_just_released("ui_up") and velocity.y < JUMP_RELEASE:
 			velocity.y = JUMP_RELEASE
@@ -165,6 +216,14 @@ func process_player_movement():
 		if velocity.y > 10 and not fast_fall:
 			velocity.y += FALL_FAST
 			fast_fall = true
+			
+	jumps = clamp(jumps, 0, MAX_JUMPS)	
+		
+	if SaveManager.boots == true and Input.is_action_just_pressed("ui_up") and $Area2D/ShieldBlock.disabled == true and SaveManager.blockjump != true:
+		if jumps < MAX_JUMPS:
+			velocity.y = JUMP_POWER
+			jumps += 1
+		
 			
 	velocity = move_and_slide(velocity, Vector2.UP)
 
@@ -186,13 +245,30 @@ func _on_Hurtbox_area_entered(hitbox):
 	$Health/CanvasLayer/Healthfull.value = self.hp
 	SaveManager.hp = self.hp
 	print(self.hp)
-	if self.hp < 0:
+	if self.hp <= 0:
+		SaveManager.hp = 100
 		die()
 
 func die():
-	$Sprite.visible = false
+	change_scene = get_tree().change_scene("res://MainWorld/Main.tscn")
+	SaveManager.hp = 100
+	self.hp = 100
 	
 func load_hp():
+	if SaveManager.usesmall == true:
+		SaveManager.hp += 10
+		SaveManager.usesmall = false
+	if SaveManager.uselarge == true:
+		SaveManager.hp += 40
+		SaveManager.uselarge = false
+	
+	if hp > 100 and !SaveManager.cloak:
+		hp = 100
+	if SaveManager.cloak == true:
+		if hp > 120:
+			hp = 120
+	if SaveManager.hp == 100:
+		$Health/CanvasLayer/Healthfull.value = 100
 	$Health/CanvasLayer/Healthfull.value = self.hp
 
 func disableshield():

@@ -11,27 +11,20 @@ func _ready():
 	timer.wait_time = 2.8
 	timer.start()
 	if velocity.x < 0:
-		$Spiderwalking.scale.x *= -1
-		$CollisionPolygon2D.scale.x *= -1
+		$Thisissomething.scale.y *= -1
+		$CollisionShape2D.scale.y *= -1
 
 func _process(_delta):
 	move_and_slide(velocity)
 	if hp <= 0:
 		hp = 0
 		queue_free()
-	if velocity.x != 0:
-		if !$AnimationPlayer.is_playing():
-			$AnimationPlayer.play("walk")
-	else:
-		$AnimationPlayer.stop()
 
 func _on_timer_timeout():
 	velocity = -velocity 
 	timer.start()
-	$Spiderwalking.scale.x *= -1
-	$CollisionPolygon2D.scale.x *= -1
-	
+	$Thisissomething.scale.y *= -1
+	$CollisionShape2D.scale.y *= -1
 
-
-func _on_Hurtbox_area_entered(area):
+func _on_Hurtbox_area_entered(_area):
 	hp -= 12

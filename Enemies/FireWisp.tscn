@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Volcano/firewisp.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/FireWisp.gd" type="Script" id=2]
+[ext_resource path="res://Hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 15.8328
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 9.59064
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 7.84127
+
+[node name="FireWisp" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource( 2 )
+
+[node name="Firewisp" type="Sprite" parent="."]
+position = Vector2( 0.0414124, -6.36283 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+position = Vector2( -23.5536, 17.6913 )
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 23.8338, -22.9375 )
+shape = SubResource( 1 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 4 )]
+position = Vector2( -37.8098, 17.3324 )
+collision_layer = 0
+collision_mask = 32
+damage = 10
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 37.9576, -18.9196 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
