@@ -11,6 +11,12 @@ func _on_Area2D_body_exited(_body):
 
 func _process(_delta):
 	if entered == true:
+		if SaveManager.gateopen == false:
+			if Input.is_action_just_pressed("Attack"):
+				$CloudBackground/Opengate.visible = true
+				SaveManager.gateopen = true
+		if SaveManager.gateopen == true:
+			$CloudBackground/Opengate.visible = true
 		if Input.is_action_just_pressed("ui_accept") and $CloudBackground/Opengate.visible == true:
 			change_scene = get_tree().change_scene("res://SkyWorld/Skyworldp2/CloudArea2.tscn")
 

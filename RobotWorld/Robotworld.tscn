@@ -1,14 +1,210 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://RobotWorld/newrobotroom.png" type="Texture" id=1]
 [ext_resource path="res://RobotWorld/robotwall.png" type="Texture" id=2]
+[ext_resource path="res://Hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://RobotWorld/oldrobot.png" type="Texture" id=6]
+[ext_resource path="res://RobotWorld/welllift.png" type="Texture" id=7]
+[ext_resource path="res://RobotWorld/WellArea.gd" type="Script" id=8]
+[ext_resource path="res://RobotWorld/Robotworld.gd" type="Script" id=9]
+[ext_resource path="res://RobotWorld/rebuiltrobot.png" type="Texture" id=13]
+[ext_resource path="res://RobotWorld/idkcloud.png" type="Texture" id=14]
+
+[sub_resource type="CircleShape2D" id=27]
+radius = 26.0192
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 14, 20 )
+
+[sub_resource type="Animation" id=30]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Shoot"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "swing"
+length = 4.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 3.9, 4.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 3, 0 ]
+}
+
+[sub_resource type="CircleShape2D" id=32]
+radius = 96.0208
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 140.5, 10 )
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 508, 4.5 )
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 9 )
 
-[node name="Robotwall" type="Sprite" parent="."]
-position = Vector2( 160, 89 )
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 0, 0, 180, 1012, 180, 1012, 0, 1, 0, 1, -2, 1012, -3, 1017, -3, 1015, 186, -5, 183, -4, -3, 1, -2 )
+
+[node name="OldBackground" type="TextureRect" parent="."]
+margin_right = 1012.0
+margin_bottom = 180.0
 texture = ExtResource( 2 )
+stretch_mode = 2
 
-[node name="Newrobotroom" type="Sprite" parent="."]
-position = Vector2( 315, 90 )
+[node name="NewBackground" type="TextureRect" parent="."]
+visible = false
+margin_right = 1008.0
+margin_bottom = 180.0
 texture = ExtResource( 1 )
+stretch_mode = 2
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 39, 188 )
+
+[node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
+position = Vector2( 1008, 178 )
+
+[node name="Oldrobot" type="Sprite" parent="."]
+position = Vector2( 975, 132 )
+texture = ExtResource( 6 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Oldrobot"]
+position = Vector2( -34, 43 )
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Oldrobot/StaticBody2D"]
+polygon = PoolVector2Array( -2, 2, 0, -9, 6, -22, 7, -53, 27, -76, 38, -77, 44, -90, 57, -87, 64, -83, 67, -74, 68, 1 )
+
+[node name="DeliverKeys" type="Area2D" parent="Oldrobot"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oldrobot/DeliverKeys"]
+position = Vector2( -46, 25 )
+shape = SubResource( 27 )
+
+[node name="Welllift" type="Sprite" parent="."]
+position = Vector2( 27, 82 )
+texture = ExtResource( 7 )
+
+[node name="WellArea" type="Area2D" parent="Welllift"]
+collision_layer = 0
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Welllift/WellArea"]
+position = Vector2( -1, 73 )
+shape = SubResource( 26 )
+
+[node name="Rebuiltrobot" type="Sprite" parent="."]
+visible = false
+position = Vector2( 931, 90 )
+texture = ExtResource( 13 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Rebuiltrobot"]
+anims/RESET = SubResource( 30 )
+anims/Shoot = SubResource( 28 )
+anims/swing = SubResource( 29 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Rebuiltrobot"]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rebuiltrobot/StaticBody2D"]
+position = Vector2( -58, 69 )
+polygon = PoolVector2Array( -4, 3, -2, -61, -18, -107, 29, -142, 38, -144, 43, -156, 62, -152, 65, -144, 85, -142, 123, -110, 108, -61, 106, 16, 99, 19, 65, -8, 40, -9, 7, 20, -1, 16 )
+disabled = true
+
+[node name="Hurtbox" parent="Rebuiltrobot" instance=ExtResource( 3 )]
+position = Vector2( -172, 46 )
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Rebuiltrobot/Hurtbox" index="0"]
+position = Vector2( 166, -40 )
+shape = SubResource( 32 )
+
+[node name="Hitbox" parent="Rebuiltrobot" instance=ExtResource( 4 )]
+position = Vector2( -62, 37 )
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="Rebuiltrobot/Hitbox" index="0"]
+position = Vector2( -136, 42 )
+shape = SubResource( 33 )
+disabled = true
+
+[node name="Wave" type="TextureRect" parent="Rebuiltrobot"]
+visible = false
+margin_left = -337.0
+margin_top = 65.0
+margin_right = -56.0
+margin_bottom = 89.0
+texture = ExtResource( 14 )
+stretch_mode = 2
+
+[node name="Drillcatch" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drillcatch"]
+position = Vector2( 504, 183.5 )
+shape = SubResource( 31 )
+
+[node name="BlackBackground" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 0.113725, 0.0470588, 0.0470588, 1 )
+margin_left = -28.0
+margin_top = -36.0
+margin_right = 1047.0
+margin_bottom = 208.0
+color = Color( 0, 0, 0, 1 )
+
+[connection signal="body_entered" from="Oldrobot/DeliverKeys" to="." method="_on_DeliverKeys_body_entered"]
+[connection signal="body_exited" from="Oldrobot/DeliverKeys" to="." method="_on_DeliverKeys_body_exited"]
+[connection signal="body_entered" from="Welllift/WellArea" to="Welllift/WellArea" method="_on_WellArea_body_entered"]
+[connection signal="body_exited" from="Welllift/WellArea" to="Welllift/WellArea" method="_on_WellArea_body_exited"]
+[connection signal="area_entered" from="Rebuiltrobot/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="body_entered" from="Drillcatch" to="." method="_on_Drillcatch_body_entered"]
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="Player/Hitbox"]
+[editable path="Rebuiltrobot/Hurtbox"]
+[editable path="Rebuiltrobot/Hitbox"]
