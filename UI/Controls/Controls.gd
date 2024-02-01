@@ -4,6 +4,7 @@ var open = false
 
 func _ready():
 	if not SaveManager.initialized:
+		SaveManager.movement = 1
 		open = true
 		$CanvasLayer.visible = true
 		animations()

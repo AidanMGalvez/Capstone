@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://UI/Controls/Controls.gd" type="Script" id=1]
 [ext_resource path="res://UI/Controls/controls.png" type="Texture" id=2]
 [ext_resource path="res://Player/Playersheet.png" type="Texture" id=3]
 [ext_resource path="res://Player/dagger.png" type="Texture" id=4]
-[ext_resource path="res://UI/InventoryWPlayer.png" type="Texture" id=5]
+[ext_resource path="res://UI/inventory.png" type="Texture" id=5]
 [ext_resource path="res://UnderGroundWorld/SpiderChestEmpty.png" type="Texture" id=6]
 [ext_resource path="res://UnderGroundWorld/SpiderChestOpen.png" type="Texture" id=7]
 
@@ -25,21 +25,6 @@ tracks/0/keys = {
 "values": [ 4, 3, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=4]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/PlayerSheet/WL:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 5 ]
-}
-
 [sub_resource type="Animation" id=5]
 resource_name = "WL"
 length = 0.9
@@ -55,21 +40,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 5, 6, 7, 8, 9 ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("PlayerSheet/Swing:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 10 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -88,23 +58,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 10, 11, 12, 13, 14, 15 ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "WL"
-length = 0.9
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/PlayerSheet/WL:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 5, 6, 7, 8, 9 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -134,83 +87,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=10]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Dagger:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 121.966, 80.4082 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Dagger:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "Swing"
-length = 1.5
-loop = true
-step = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("PlayerSheet/Swing:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.8, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 10, 11, 12, 13, 14, 15 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "WL"
-length = 0.9
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/PlayerSheet/WL:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 5, 6, 7, 8, 9 ]
-}
-
-[sub_resource type="Animation" id=13]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Shield:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 16 ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -247,21 +123,6 @@ tracks/0/keys = {
 "values": [ Vector2( 118.535, 58.4289 ), Vector2( 118.535, 56.4289 ), Vector2( 118.535, 54.4289 ), Vector2( 118.535, 53.4289 ), Vector2( 118.535, 54.4289 ), Vector2( 118.535, 56.4289 ), Vector2( 118.535, 57.4289 ), Vector2( 118.535, 58.4289 ) ]
 }
 
-[sub_resource type="Animation" id=16]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../PlayerSheet/Jump:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 118.535, 58.4289 ) ]
-}
-
 [sub_resource type="Animation" id=17]
 resource_name = "Chest"
 length = 0.6
@@ -277,33 +138,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=18]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../PlayerSheet/SpiderChestEmpty:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../PlayerSheet/SpiderChestOpen:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
 }
 
 [node name="Controls" type="Node2D"]
@@ -499,7 +333,6 @@ frame = 5
 
 [node name="WLAnimation" type="AnimationPlayer" parent="CanvasLayer/PlayerSheet"]
 root_node = NodePath("../../..")
-anims/RESET = SubResource( 4 )
 anims/WL = SubResource( 5 )
 
 [node name="Swing" type="Sprite" parent="CanvasLayer/PlayerSheet"]
@@ -512,21 +345,15 @@ frame = 10
 
 [node name="SwingAnimation" type="AnimationPlayer" parent="CanvasLayer/PlayerSheet"]
 root_node = NodePath("../..")
-anims/RESET = SubResource( 6 )
 anims/Swing = SubResource( 7 )
-anims/WL = SubResource( 8 )
 
 [node name="Dagger" type="Sprite" parent="CanvasLayer/PlayerSheet"]
-visible = false
 position = Vector2( 121.966, 80.4082 )
 rotation = 0.785398
 texture = ExtResource( 4 )
 
 [node name="DaggerAnimation" type="AnimationPlayer" parent="CanvasLayer/PlayerSheet"]
 anims/Dagger = SubResource( 9 )
-anims/RESET = SubResource( 10 )
-anims/Swing = SubResource( 11 )
-anims/WL = SubResource( 12 )
 
 [node name="Shield" type="Sprite" parent="CanvasLayer/PlayerSheet"]
 position = Vector2( -25.3058, 124.012 )
@@ -537,13 +364,7 @@ hframes = 22
 frame = 16
 
 [node name="ShieldAnimation" type="AnimationPlayer" parent="CanvasLayer/PlayerSheet"]
-anims/RESET = SubResource( 13 )
 anims/Shield = SubResource( 14 )
-
-[node name="InventoryWPlayer" type="Sprite" parent="CanvasLayer/PlayerSheet"]
-position = Vector2( 136.1, 144.27 )
-scale = Vector2( 0.295313, 0.335394 )
-texture = ExtResource( 5 )
 
 [node name="Jump" type="Sprite" parent="CanvasLayer/PlayerSheet"]
 position = Vector2( 118.535, 58.4289 )
@@ -556,7 +377,6 @@ frame = 4
 [node name="JumpAnimation" type="AnimationPlayer" parent="CanvasLayer/PlayerSheet"]
 root_node = NodePath("../../ControlsBackground")
 anims/Jump = SubResource( 15 )
-anims/RESET = SubResource( 16 )
 
 [node name="SpiderChestEmpty" type="Sprite" parent="CanvasLayer/PlayerSheet"]
 position = Vector2( 281.53, 147.13 )
@@ -571,7 +391,6 @@ texture = ExtResource( 7 )
 [node name="ChestAnimation" type="AnimationPlayer" parent="CanvasLayer/PlayerSheet"]
 root_node = NodePath("../../ControlsBackground")
 anims/Chest = SubResource( 17 )
-anims/RESET = SubResource( 18 )
 
 [node name="Label" type="Label" parent="CanvasLayer/PlayerSheet"]
 margin_left = 7.07108
@@ -581,3 +400,8 @@ margin_bottom = 30.3033
 text = "Press \"R\" to open and Close this Control Panel"
 align = 1
 valign = 1
+
+[node name="Inventory" type="Sprite" parent="CanvasLayer/PlayerSheet"]
+position = Vector2( 136.522, 144.28 )
+scale = Vector2( 0.12252, 0.12252 )
+texture = ExtResource( 5 )

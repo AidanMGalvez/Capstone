@@ -1,241 +1,252 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://UI/cloakoutline.png" type="Texture" id=1]
-[ext_resource path="res://UI/ShieldOutline.png" type="Texture" id=2]
-[ext_resource path="res://UI/InventoryWPlayer.png" type="Texture" id=3]
-[ext_resource path="res://UI/DaggerOutline.png" type="Texture" id=4]
-[ext_resource path="res://UI/BootsOutline.png" type="Texture" id=5]
-[ext_resource path="res://UI/InventoryLabel.png" type="Texture" id=6]
-[ext_resource path="res://UI/InventoryBackground.png" type="Texture" id=7]
-[ext_resource path="res://UI/SwordOutline.png" type="Texture" id=8]
-[ext_resource path="res://UI/InventorySlot.png" type="Texture" id=9]
-[ext_resource path="res://UI/Slot.gd" type="Script" id=10]
-[ext_resource path="res://UI/Inventory.gd" type="Script" id=11]
+[ext_resource path="res://UI/inventory.png" type="Texture" id=1]
+[ext_resource path="res://Town/spiderLegsinjar.png" type="Texture" id=2]
+[ext_resource path="res://Town/CloudinJar.png" type="Texture" id=3]
+[ext_resource path="res://Town/Amethyst.png" type="Texture" id=4]
+[ext_resource path="res://Town/VolcanicRock.png" type="Texture" id=5]
+[ext_resource path="res://Town/Wood.png" type="Texture" id=6]
+[ext_resource path="res://Player/dagger.png" type="Texture" id=7]
+[ext_resource path="res://UI/Inventory.gd" type="Script" id=8]
+[ext_resource path="res://UI/Coin.png" type="Texture" id=9]
+[ext_resource path="res://UI/largepotion.png" type="Texture" id=10]
+[ext_resource path="res://UI/smallhealth.png" type="Texture" id=11]
+[ext_resource path="res://Player/upgradedcloakpng.png" type="Texture" id=12]
+[ext_resource path="res://Player/upgradedsword.png" type="Texture" id=13]
+[ext_resource path="res://Player/UpgradedShield.png" type="Texture" id=14]
+[ext_resource path="res://Player/Upgradeddagger.png" type="Texture" id=15]
+[ext_resource path="res://Player/CloudBoots.png" type="Texture" id=16]
+[ext_resource path="res://UI/DaggerOutline.png" type="Texture" id=17]
+[ext_resource path="res://UI/BootsOutline.png" type="Texture" id=18]
+[ext_resource path="res://UI/cloakoutline.png" type="Texture" id=19]
+[ext_resource path="res://UI/ShieldOutline.png" type="Texture" id=20]
+[ext_resource path="res://UI/SwordOutline.png" type="Texture" id=21]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 9 )
-region_rect = Rect2( 0, 0, 16, 16 )
-
-[node name="Inventory" type="Sprite"]
+[node name="Node2D" type="Node2D"]
 visible = false
-position = Vector2( 171, 101 )
-scale = Vector2( 1.44711, 1.33259 )
-texture = ExtResource( 3 )
-script = ExtResource( 11 )
+script = ExtResource( 8 )
 
-[node name="InventoryLabel" type="Sprite" parent="."]
-position = Vector2( 48.7178, -39.9598 )
-scale = Vector2( 0.770214, 0.633165 )
-texture = ExtResource( 6 )
-
-[node name="InventoryBackground" type="Sprite" parent="."]
-position = Vector2( -0.345535, -0.375223 )
-scale = Vector2( 0.995519, 0.988051 )
-texture = ExtResource( 7 )
-
-[node name="EquipOutline" type="Node2D" parent="."]
-
-[node name="BootsOutline" type="Sprite" parent="EquipOutline"]
-position = Vector2( -39.6436, 40.1071 )
-scale = Vector2( 0.561463, 0.609714 )
-texture = ExtResource( 5 )
-
-[node name="Cloakoutline" type="Sprite" parent="EquipOutline"]
-position = Vector2( -71.6039, -23.8685 )
-scale = Vector2( 0.336379, 0.336379 )
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 texture = ExtResource( 1 )
 
-[node name="SwordOutline" type="Sprite" parent="EquipOutline"]
-position = Vector2( -72.3535, 7.36893 )
-scale = Vector2( 0.662537, 0.662537 )
-texture = ExtResource( 8 )
+[node name="Items" type="Node2D" parent="."]
 
-[node name="ShieldOutline" type="Sprite" parent="EquipOutline"]
-position = Vector2( -7.76328, 8.11954 )
-scale = Vector2( 0.350167, 0.350167 )
+[node name="Wood" type="Sprite" parent="Items"]
+position = Vector2( 174.167, 61.485 )
+texture = ExtResource( 6 )
+
+[node name="WoodLabel" type="Label" parent="Items/Wood"]
+margin_left = 7.84105
+margin_top = -1.33597
+margin_right = 22.841
+margin_bottom = 12.664
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="VolcanicRock" type="Sprite" parent="Items"]
+position = Vector2( 220.206, 62.1156 )
+texture = ExtResource( 5 )
+
+[node name="VolcanicLabel" type="Label" parent="Items/VolcanicRock"]
+margin_left = 7.0
+margin_top = -1.50282
+margin_right = 21.0
+margin_bottom = 12.4972
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="SpiderLegsinjar" type="Sprite" parent="Items"]
+position = Vector2( 266.455, 62.1156 )
 texture = ExtResource( 2 )
 
-[node name="DaggerOutline" type="Sprite" parent="EquipOutline"]
-position = Vector2( -8.08671, -23.8468 )
-scale = Vector2( 0.691032, 0.750418 )
+[node name="SpiderLabel" type="Label" parent="Items/SpiderLegsinjar"]
+margin_left = 6.0
+margin_top = -2.0
+margin_right = 21.0
+margin_bottom = 12.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Amethyst" type="Sprite" parent="Items"]
+position = Vector2( 173.746, 103.53 )
 texture = ExtResource( 4 )
 
-[node name="GridContainer" type="GridContainer" parent="."]
-margin_left = 16.0
-margin_top = -32.0
-margin_right = 83.0
-margin_bottom = 63.0
-custom_constants/vseparation = 0
-custom_constants/hseparation = 0
-columns = 4
+[node name="AmethystLabel" type="Label" parent="Items/Amethyst"]
+margin_left = 5.83427
+margin_top = -2.33371
+margin_right = 19.8343
+margin_bottom = 11.6663
+rect_scale = Vector2( 0.5, 0.5 )
 
-[node name="Slot1" type="Panel" parent="GridContainer"]
-margin_right = 16.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="CloudinJar" type="Sprite" parent="Items"]
+position = Vector2( 219.996, 102.058 )
+texture = ExtResource( 3 )
 
-[node name="Slot2" type="Panel" parent="GridContainer"]
-margin_left = 16.0
-margin_right = 32.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="CloudLabel" type="Label" parent="Items/CloudinJar"]
+margin_left = 5.66629
+margin_top = -1.67419
+margin_right = 19.6663
+margin_bottom = 12.3258
+rect_scale = Vector2( 0.5, 0.5 )
 
-[node name="Slot3" type="Panel" parent="GridContainer"]
-margin_left = 32.0
-margin_right = 48.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Dagger" type="Sprite" parent="Items"]
+position = Vector2( 266.035, 102.268 )
+texture = ExtResource( 7 )
 
-[node name="Slot4" type="Panel" parent="GridContainer"]
-margin_left = 48.0
-margin_right = 64.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="DaggerLabel" type="Label" parent="Items/Dagger"]
+margin_left = 7.30017
+margin_top = -1.60554
+margin_right = 24.3002
+margin_bottom = 12.3945
+rect_scale = Vector2( 0.5, 0.5 )
 
-[node name="Slot5" type="Panel" parent="GridContainer"]
-margin_top = 16.0
-margin_right = 16.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Smallhealth" type="Sprite" parent="Items"]
+position = Vector2( 172.666, 138.585 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
 
-[node name="Slot6" type="Panel" parent="GridContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="SmallLabel" type="Label" parent="Items/Smallhealth"]
+margin_left = 6.0
+margin_top = -1.4205
+margin_right = 27.0
+margin_bottom = 19.5795
+rect_scale = Vector2( 0.7, 0.7 )
 
-[node name="Slot7" type="Panel" parent="GridContainer"]
-margin_left = 32.0
-margin_top = 16.0
-margin_right = 48.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="UseSmall" type="Button" parent="Items/Smallhealth"]
+margin_left = -10.9618
+margin_top = 9.30466
+margin_right = 32.0382
+margin_bottom = 29.3047
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Use"
 
-[node name="Slot8" type="Panel" parent="GridContainer"]
-margin_left = 48.0
-margin_top = 16.0
-margin_right = 64.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Largepotion" type="Sprite" parent="Items"]
+position = Vector2( 219.766, 138.182 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
 
-[node name="Slot9" type="Panel" parent="GridContainer"]
-margin_top = 32.0
-margin_right = 16.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="LargeLabel" type="Label" parent="Items/Largepotion"]
+margin_left = 9.0
+margin_top = -1.23782
+margin_right = 41.0
+margin_bottom = 27.7622
+rect_scale = Vector2( 0.7, 0.7 )
 
-[node name="Slot10" type="Panel" parent="GridContainer"]
-margin_left = 16.0
-margin_top = 32.0
-margin_right = 32.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="UseLarge" type="Button" parent="Items/Largepotion"]
+margin_left = -11.4695
+margin_top = 9.75732
+margin_right = 31.5305
+margin_bottom = 29.7573
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Use"
 
-[node name="Slot11" type="Panel" parent="GridContainer"]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 48.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Coin" type="Sprite" parent="Items"]
+position = Vector2( 264.081, 136.962 )
+scale = Vector2( 0.76437, 0.76437 )
+texture = ExtResource( 9 )
 
-[node name="Slot12" type="Panel" parent="GridContainer"]
-margin_left = 48.0
-margin_top = 32.0
-margin_right = 64.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="CoinLabel" type="Label" parent="Items/Coin"]
+margin_left = 10.0
+margin_top = 0.924805
+margin_right = 34.0
+margin_bottom = 24.9248
+rect_scale = Vector2( 0.5, 0.5 )
 
-[node name="Slot13" type="Panel" parent="GridContainer"]
-margin_top = 48.0
-margin_right = 16.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Equipment" type="Node2D" parent="."]
 
-[node name="Slot14" type="Panel" parent="GridContainer"]
-margin_left = 16.0
-margin_top = 48.0
-margin_right = 32.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Cloak" type="CheckButton" parent="Equipment"]
+margin_left = 94.5506
+margin_top = 52.7951
+margin_right = 170.551
+margin_bottom = 92.7951
+rect_scale = Vector2( 0.5, 0.5 )
 
-[node name="Slot20" type="Panel" parent="GridContainer"]
-margin_left = 32.0
-margin_top = 48.0
-margin_right = 48.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Upgradedcloakpng" type="Sprite" parent="Equipment/Cloak"]
+visible = false
+position = Vector2( -22.4579, 22.6949 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
 
-[node name="Slot19" type="Panel" parent="GridContainer"]
-margin_left = 48.0
-margin_top = 48.0
-margin_right = 64.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Cloakoutline" type="Sprite" parent="Equipment/Cloak"]
+position = Vector2( -66.2728, 22.9022 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 19 )
 
-[node name="Slot18" type="Panel" parent="GridContainer"]
-margin_top = 64.0
-margin_right = 16.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Boots" type="CheckButton" parent="Equipment"]
+margin_left = 96.1255
+margin_top = 76.1037
+margin_right = 172.126
+margin_bottom = 116.104
+rect_scale = Vector2( 0.5, 0.5 )
 
-[node name="Slot17" type="Panel" parent="GridContainer"]
-margin_left = 16.0
-margin_top = 64.0
-margin_right = 32.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="CloudBoots" type="Sprite" parent="Equipment/Boots"]
+visible = false
+position = Vector2( -25.4833, 24.2785 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
 
-[node name="Slot16" type="Panel" parent="GridContainer"]
-margin_left = 32.0
-margin_top = 64.0
-margin_right = 48.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="BootsOutline" type="Sprite" parent="Equipment/Boots"]
+position = Vector2( -70.1297, 24.0147 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 18 )
 
-[node name="Slot15" type="Panel" parent="GridContainer"]
-margin_left = 48.0
-margin_top = 64.0
-margin_right = 64.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 16, 16 )
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 10 )
+[node name="Dagger" type="CheckButton" parent="Equipment"]
+margin_left = 96.1255
+margin_top = 95.3175
+margin_right = 172.126
+margin_bottom = 135.317
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Upgradeddagger" type="Sprite" parent="Equipment/Dagger"]
+visible = false
+position = Vector2( -23.3619, 18.7278 )
+scale = Vector2( 1.7513, 1.7513 )
+texture = ExtResource( 15 )
+
+[node name="DaggerOutline" type="Sprite" parent="Equipment/Dagger"]
+position = Vector2( -72.9581, 18.8211 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 17 )
+
+[node name="Shield" type="CheckButton" parent="Equipment"]
+margin_left = 95.8105
+margin_top = 118.311
+margin_right = 171.811
+margin_bottom = 158.311
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="UpgradedShield" type="Sprite" parent="Equipment/Shield"]
+visible = false
+position = Vector2( -23.0854, 21.1812 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="ShieldOutline" type="Sprite" parent="Equipment/Shield"]
+position = Vector2( -73.3888, 20.3871 )
+scale = Vector2( 2.08319, 2.15321 )
+texture = ExtResource( 20 )
+
+[node name="Sword" type="CheckButton" parent="Equipment"]
+margin_left = 95.8105
+margin_top = 141.935
+margin_right = 171.811
+margin_bottom = 181.935
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Upgradedsword" type="Sprite" parent="Equipment/Sword"]
+visible = false
+position = Vector2( -26.474, 20.0024 )
+scale = Vector2( 1.91657, 1.91657 )
+texture = ExtResource( 13 )
+
+[node name="SwordOutline" type="Sprite" parent="Equipment/Sword"]
+position = Vector2( -74.0185, 19.9477 )
+scale = Vector2( 1.90245, 1.90245 )
+texture = ExtResource( 21 )
+
+[connection signal="pressed" from="Items/Smallhealth/UseSmall" to="." method="_on_UseSmall_pressed"]
+[connection signal="pressed" from="Items/Largepotion/UseLarge" to="." method="_on_UseLarge_pressed"]
+[connection signal="toggled" from="Equipment/Cloak" to="." method="_on_Cloak_toggled"]
+[connection signal="toggled" from="Equipment/Boots" to="." method="_on_Boots_toggled"]
+[connection signal="toggled" from="Equipment/Dagger" to="." method="_on_Dagger_toggled"]
+[connection signal="toggled" from="Equipment/Shield" to="." method="_on_Shield_toggled"]
+[connection signal="toggled" from="Equipment/Sword" to="." method="_on_Sword_toggled"]

@@ -1,0 +1,333 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Town/craftshopinside.png" type="Texture" id=2]
+[ext_resource path="res://Volcano/uglavabackground.png" type="Texture" id=3]
+[ext_resource path="res://Town/Leavecraftshop.gd" type="Script" id=4]
+[ext_resource path="res://Town/Crafter.gd" type="Script" id=5]
+[ext_resource path="res://Player/CloudBoots.png" type="Texture" id=6]
+[ext_resource path="res://Player/Upgradeddagger.png" type="Texture" id=7]
+[ext_resource path="res://Player/upgradedsword.png" type="Texture" id=8]
+[ext_resource path="res://Player/UpgradedShield.png" type="Texture" id=9]
+[ext_resource path="res://Player/upgradedcloakpng.png" type="Texture" id=10]
+[ext_resource path="res://Town/Wood.png" type="Texture" id=11]
+[ext_resource path="res://Town/Amethyst.png" type="Texture" id=12]
+[ext_resource path="res://Town/CloudinJar.png" type="Texture" id=13]
+[ext_resource path="res://Town/VolcanicRock.png" type="Texture" id=14]
+[ext_resource path="res://Town/spiderLegsinjar.png" type="Texture" id=15]
+[ext_resource path="res://Town/craftbutton.png" type="Texture" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 13, 22.5 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 29.0
+
+[node name="CraftShopInside" type="Node2D"]
+position = Vector2( 110, 12 )
+
+[node name="Uglavabackground" type="Sprite" parent="."]
+position = Vector2( 51, 77 )
+texture = ExtResource( 3 )
+
+[node name="Craftshopinside" type="Sprite" parent="Uglavabackground"]
+position = Vector2( -2, -2 )
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 80, 162 )
+
+[node name="Camera2D" parent="Player" index="2"]
+position = Vector2( 3, -41 )
+
+[node name="TopLeft" parent="Player/Camera2D/Limits" index="0"]
+position = Vector2( 1, 0 )
+
+[node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
+position = Vector2( 321, 180 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 49, 160 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 49, -8 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 107, 82 )
+rotation = 1.5708
+scale = Vector2( 1.7, 1 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -8.99999, 77 )
+rotation = 1.5708
+scale = Vector2( 1.7, 1 )
+shape = SubResource( 1 )
+
+[node name="Leave" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leave"]
+position = Vector2( 79, 125.5 )
+shape = SubResource( 2 )
+
+[node name="Crafter" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crafter"]
+position = Vector2( 34, 124 )
+shape = SubResource( 3 )
+
+[node name="Background" type="YSort" parent="Crafter"]
+
+[node name="ShopBackground" type="ColorRect" parent="Crafter/Background"]
+modulate = Color( 0.113725, 0.0470588, 0.0470588, 1 )
+margin_left = 6.0
+margin_top = 50.0
+margin_right = 91.0
+margin_bottom = 119.0
+
+[node name="ItemBackground" type="ColorRect" parent="Crafter/Background"]
+modulate = Color( 0.0627451, 0.0509804, 0.0509804, 1 )
+margin_left = 7.0
+margin_top = 76.0
+margin_right = 47.0
+margin_bottom = 94.0
+rect_pivot_offset = Vector2( 15, 10 )
+
+[node name="ItemBackground2" type="ColorRect" parent="Crafter/Background"]
+modulate = Color( 0.0627451, 0.0509804, 0.0509804, 1 )
+margin_left = 20.0
+margin_top = 53.0
+margin_right = 79.0
+margin_bottom = 71.0
+rect_pivot_offset = Vector2( 15, 10 )
+
+[node name="ItemBackground3" type="ColorRect" parent="Crafter/Background"]
+modulate = Color( 0.0627451, 0.0509804, 0.0509804, 1 )
+margin_left = 49.0
+margin_top = 98.0
+margin_right = 90.0
+margin_bottom = 116.0
+rect_pivot_offset = Vector2( 15, 10 )
+
+[node name="ItemBackground4" type="ColorRect" parent="Crafter/Background"]
+modulate = Color( 0.0627451, 0.0509804, 0.0509804, 1 )
+margin_left = 7.0
+margin_top = 98.0
+margin_right = 47.0
+margin_bottom = 116.0
+rect_pivot_offset = Vector2( 15, 10 )
+
+[node name="ItemBackground5" type="ColorRect" parent="Crafter/Background"]
+modulate = Color( 0.0627451, 0.0509804, 0.0509804, 1 )
+margin_left = 49.0
+margin_top = 76.0
+margin_right = 90.0
+margin_bottom = 94.0
+rect_pivot_offset = Vector2( 15, 10 )
+
+[node name="Items" type="YSort" parent="Crafter"]
+
+[node name="CloudBoots" type="Sprite" parent="Crafter/Items"]
+position = Vector2( 16, 85 )
+scale = Vector2( 0.8125, 0.8125 )
+texture = ExtResource( 6 )
+
+[node name="Upgradedsword" type="Sprite" parent="Crafter/Items"]
+position = Vector2( 57, 107 )
+texture = ExtResource( 8 )
+
+[node name="UpgradedShield" type="Sprite" parent="Crafter/Items"]
+position = Vector2( 58, 85 )
+scale = Vector2( 0.617647, 0.617647 )
+texture = ExtResource( 9 )
+
+[node name="Upgradeddagger" type="Sprite" parent="Crafter/Items"]
+position = Vector2( 15.5, 106.5 )
+scale = Vector2( 1.0625, 1.0625 )
+texture = ExtResource( 7 )
+
+[node name="Upgradedcloakpng" type="Sprite" parent="Crafter/Items"]
+position = Vector2( 28, 62 )
+scale = Vector2( 0.625, 0.625 )
+texture = ExtResource( 10 )
+
+[node name="Materials" type="YSort" parent="Crafter"]
+
+[node name="SwordAmethyst" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 81, 102 )
+scale = Vector2( 0.392857, 0.392857 )
+texture = ExtResource( 12 )
+
+[node name="SheildAmethyst" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 67, 81 )
+scale = Vector2( 0.392857, 0.392857 )
+texture = ExtResource( 12 )
+
+[node name="CloakAmethyst" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 39, 65 )
+scale = Vector2( 0.392857, 0.392857 )
+texture = ExtResource( 12 )
+
+[node name="DaggerAmethyst" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 26, 111 )
+scale = Vector2( 0.392857, 0.392857 )
+texture = ExtResource( 12 )
+
+[node name="ShieldCloud" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 67, 88 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 13 )
+
+[node name="CloakCloud" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 53, 64 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 13 )
+
+[node name="BootCloud" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 25, 88 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 13 )
+
+[node name="SwordSpider" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 68, 102 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 15 )
+
+[node name="BootSpider" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 25, 81 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 15 )
+
+[node name="CloakSpider" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 39, 58 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 15 )
+
+[node name="Daggermagma" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 26, 102 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 14 )
+
+[node name="Shieldmagma" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 81, 81 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 14 )
+
+[node name="CloakMagma" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 53, 57 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 14 )
+
+[node name="SwordWood" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 68, 112 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 11 )
+
+[node name="DaggerWood" type="Sprite" parent="Crafter/Materials"]
+position = Vector2( 38, 102 )
+scale = Vector2( 0.393, 0.393 )
+texture = ExtResource( 11 )
+
+[node name="Labels" type="YSort" parent="Crafter"]
+
+[node name="BootsLabel" type="Label" parent="Crafter/Labels"]
+margin_left = 27.0
+margin_top = 77.0
+margin_right = 33.0
+margin_bottom = 91.0
+rect_scale = Vector2( 0.25, 0.25 )
+
+[node name="ShieldLabel" type="Label" parent="Crafter/Labels"]
+margin_left = 70.0
+margin_top = 78.0
+margin_right = 87.0
+margin_bottom = 92.0
+rect_scale = Vector2( 0.25, 0.25 )
+
+[node name="SwordLabel" type="Label" parent="Crafter/Labels"]
+margin_left = 71.0
+margin_top = 99.0
+margin_right = 88.0
+margin_bottom = 113.0
+rect_scale = Vector2( 0.25, 0.25 )
+
+[node name="DaggerLabel" type="Label" parent="Crafter/Labels"]
+margin_left = 28.0
+margin_top = 99.0
+margin_right = 45.0
+margin_bottom = 113.0
+rect_scale = Vector2( 0.25, 0.25 )
+
+[node name="CloakLabel" type="Label" parent="Crafter/Labels"]
+margin_left = 42.0
+margin_top = 54.0
+margin_right = 59.0
+margin_bottom = 68.0
+rect_scale = Vector2( 0.25, 0.25 )
+
+[node name="Buttons" type="YSort" parent="Crafter"]
+
+[node name="CloudButton" type="Button" parent="Crafter/Buttons"]
+margin_left = 38.0
+margin_top = 88.0
+margin_right = 70.0
+margin_bottom = 108.0
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 16 )
+
+[node name="CloakButton" type="Button" parent="Crafter/Buttons"]
+margin_left = 69.0
+margin_top = 65.0
+margin_right = 101.0
+margin_bottom = 85.0
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 16 )
+
+[node name="DaggerButton" type="Button" parent="Crafter/Buttons"]
+margin_left = 38.0
+margin_top = 110.0
+margin_right = 70.0
+margin_bottom = 130.0
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 16 )
+
+[node name="ShieldButton" type="Button" parent="Crafter/Buttons"]
+margin_left = 79.0
+margin_top = 88.0
+margin_right = 111.0
+margin_bottom = 108.0
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 16 )
+
+[node name="SwordButton" type="Button" parent="Crafter/Buttons"]
+margin_left = 79.0
+margin_top = 110.0
+margin_right = 111.0
+margin_bottom = 130.0
+rect_scale = Vector2( 0.2, 0.2 )
+icon = ExtResource( 16 )
+
+[connection signal="body_entered" from="Leave" to="Leave" method="_on_Leave_body_entered"]
+[connection signal="body_exited" from="Leave" to="Leave" method="_on_Leave_body_exited"]
+[connection signal="body_entered" from="Crafter" to="Crafter" method="_on_Crafter_body_entered"]
+[connection signal="body_exited" from="Crafter" to="Crafter" method="_on_Crafter_body_exited"]
+[connection signal="pressed" from="Crafter/Buttons/CloudButton" to="Crafter" method="_on_CloudButton_pressed"]
+[connection signal="pressed" from="Crafter/Buttons/CloakButton" to="Crafter" method="_on_CloakButton_pressed"]
+[connection signal="pressed" from="Crafter/Buttons/DaggerButton" to="Crafter" method="_on_DaggerButton_pressed"]
+[connection signal="pressed" from="Crafter/Buttons/ShieldButton" to="Crafter" method="_on_ShieldButton_pressed"]
+[connection signal="pressed" from="Crafter/Buttons/SwordButton" to="Crafter" method="_on_SwordButton_pressed"]
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="Player/Hitbox"]
