@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://MainWorld/tileset.png" type="Texture" id=1]
 [ext_resource path="res://MainWorld/StartingPoint.png" type="Texture" id=2]
 [ext_resource path="res://Volcano/frogfightbackground.png" type="Texture" id=3]
-[ext_resource path="res://Volcano/Fwog-Recovered.png" type="Texture" id=4]
+[ext_resource path="res://Volcano/frogboss.png" type="Texture" id=4]
 [ext_resource path="res://Player/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Volcano/FrogFight.gd" type="Script" id=6]
+[ext_resource path="res://Volcano/EarthChest.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Hurtbox.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
 points = PoolVector2Array( 16, 16, 0.0333519, 16, 0, 0, 16, 0 )
@@ -131,15 +134,33 @@ points = PoolVector2Array( 0.0348206, 0.158192, 31, 16.06, 31, 32, 0, 32 )
 [sub_resource type="CapsuleShape2D" id=18]
 height = 185.628
 
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 79.7574, 20.5136 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 112.707, 82.1048 )
+
+[sub_resource type="CapsuleShape2D" id=21]
+height = 989.388
+
+[sub_resource type="CircleShape2D" id=22]
+radius = 33.886
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 26.6535, 24.4156 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 25.5508, 25.7925 )
+
 [node name="FrogFight" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="Frogfightbackground" type="TextureRect" parent="."]
+margin_left = -0.0078125
+margin_top = 0.015625
+margin_right = 959.992
+margin_bottom = 720.016
 texture = ExtResource( 3 )
-
-[node name="Fwog-Recovered" type="Sprite" parent="."]
-position = Vector2( 728, 634 )
-texture = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1
@@ -151,6 +172,7 @@ tile_data = PoolIntArray( -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -6
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 22.9142, 725.355 )
+z_index = 2
 
 [node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
 position = Vector2( 960.011, 720.001 )
@@ -161,8 +183,71 @@ position = Vector2( 960.011, 720.001 )
 position = Vector2( 448.289, 616.949 )
 shape = SubResource( 18 )
 
+[node name="Frogboss" type="Sprite" parent="."]
+position = Vector2( 751.374, 617.116 )
+texture = ExtResource( 4 )
+hframes = 2
+
+[node name="Hitbox" parent="Frogboss" instance=ExtResource( 10 )]
+position = Vector2( -42.8795, 175.831 )
+collision_layer = 0
+collision_mask = 32
+damage = 20
+
+[node name="CollisionShape2D" parent="Frogboss/Hitbox" index="0"]
+position = Vector2( 65.6937, -97.56 )
+shape = SubResource( 19 )
+
+[node name="Hurtbox" parent="Frogboss" instance=ExtResource( 11 )]
+position = Vector2( -361.326, 108.9 )
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Frogboss/Hurtbox" index="0"]
+position = Vector2( 355.261, -90.6522 )
+shape = SubResource( 20 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 483.266, 508.441 )
+rotation = 1.5708
+shape = SubResource( 21 )
+disabled = true
+
+[node name="exit" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit"]
+position = Vector2( 28.6689, 696.943 )
+shape = SubResource( 22 )
+
+[node name="chestup" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chestup"]
+position = Vector2( 756.721, 695.436 )
+shape = SubResource( 23 )
+
+[node name="EarthChest" parent="." instance=ExtResource( 7 )]
+position = Vector2( 387.095, 464.194 )
+
+[node name="chestdown" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chestdown"]
+position = Vector2( 475.906, 472.762 )
+shape = SubResource( 24 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="Frogboss/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="body_entered" from="exit" to="." method="_on_exit_body_entered"]
+[connection signal="body_exited" from="exit" to="." method="_on_exit_body_exited"]
+[connection signal="body_entered" from="chestup" to="." method="_on_chestup_body_entered"]
+[connection signal="body_exited" from="chestup" to="." method="_on_chestup_body_exited"]
+[connection signal="body_entered" from="chestdown" to="." method="_on_chestdown_body_entered"]
+[connection signal="body_exited" from="chestdown" to="." method="_on_chestdown_body_exited"]
 
 [editable path="Player"]
 [editable path="Player/Hurtbox"]
 [editable path="Player/Hitbox"]
+[editable path="Frogboss/Hitbox"]
+[editable path="Frogboss/Hurtbox"]

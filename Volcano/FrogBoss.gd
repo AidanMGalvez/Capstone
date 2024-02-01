@@ -60,6 +60,10 @@ func _on_Door_body_exited(_body):
 
 	
 func _process(_delta):
+	if SaveManager.leavefrogboss == true:
+		$Player.position = Vector2(450,675)
+		SaveManager.leavefrogboss = false
+		
 	if enteredarea1 == true:
 		$Player.position = Vector2(25,280)
 	if enteredarea2 == true:

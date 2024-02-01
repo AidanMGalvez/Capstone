@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Volcano/uglavabackground.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Volcano/froglegs.png" type="Texture" id=7]
 [ext_resource path="res://Volcano/stairs.png" type="Texture" id=8]
 [ext_resource path="res://Volcano/door.png" type="Texture" id=9]
+[ext_resource path="res://Enemies/FireWisp.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 185.517, 2.5 )
@@ -88,7 +89,7 @@ z_index = 2
 texture = ExtResource( 2 )
 
 [node name="Firstarea" type="Area2D" parent="FirstRoom"]
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FirstRoom/Firstarea"]
 position = Vector2( 529.784, 46.0862 )
@@ -174,14 +175,14 @@ texture = ExtResource( 2 )
 
 [node name="Secondarea" type="Area2D" parent="SecondRoom"]
 position = Vector2( -7.81464, 1.11223 )
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecondRoom/Secondarea"]
 position = Vector2( 537.126, 44.7514 )
 shape = SubResource( 4 )
 
 [node name="ReturnTofirst" type="Area2D" parent="SecondRoom"]
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecondRoom/ReturnTofirst"]
 position = Vector2( -18.2757, -2.91351 )
@@ -255,7 +256,7 @@ texture = ExtResource( 2 )
 
 [node name="Thirdarea" type="Area2D" parent="ThirdRoom"]
 position = Vector2( -9.32366, -0.231689 )
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThirdRoom/Thirdarea"]
 position = Vector2( 537.126, 44.7514 )
@@ -263,7 +264,7 @@ shape = SubResource( 4 )
 
 [node name="ReturnToSecond" type="Area2D" parent="ThirdRoom"]
 position = Vector2( -0.13707, -199.579 )
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThirdRoom/ReturnToSecond"]
 position = Vector2( -20.8995, 197.042 )
@@ -333,7 +334,7 @@ texture = ExtResource( 2 )
 
 [node name="ReturnToThird" type="Area2D" parent="FourthRoom"]
 position = Vector2( 2.59481, -391.836 )
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FourthRoom/ReturnToThird"]
 position = Vector2( -20.6663, 392.305 )
@@ -381,6 +382,47 @@ collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stairs/Stairs3/StaticBody2D"]
 polygon = PoolVector2Array( -14.1379, -26.2959, 37.4511, 14.3763, -13.9796, 14.3877 )
+
+[node name="FireWisp" parent="." instance=ExtResource( 10 )]
+position = Vector2( 207.067, 117.075 )
+
+[node name="FireWisp2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 261.435, 118.266 )
+velocity = Vector2( 50, -50 )
+
+[node name="FireWisp3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 174, 260.5 )
+velocity = Vector2( 50, -50 )
+
+[node name="FireWisp4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 90.3878, 483.112 )
+
+[node name="FireWisp5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 210.732, 464.235 )
+velocity = Vector2( 50, -50 )
+
+[node name="FireWisp6" parent="." instance=ExtResource( 10 )]
+position = Vector2( 307.479, 478.393 )
+velocity = Vector2( 50, -50 )
+
+[node name="FireWisp7" parent="." instance=ExtResource( 10 )]
+position = Vector2( 407.53, 461.403 )
+
+[node name="FireWisp8" parent="." instance=ExtResource( 10 )]
+position = Vector2( 98, 280 )
+
+[node name="FireWisp9" parent="." instance=ExtResource( 10 )]
+position = Vector2( 274, 281.5 )
+
+[node name="FireWisp10" parent="." instance=ExtResource( 10 )]
+position = Vector2( 106.083, 672.679 )
+
+[node name="FireWisp11" parent="." instance=ExtResource( 10 )]
+position = Vector2( 205.296, 653.63 )
+velocity = Vector2( 50, -50 )
+
+[node name="FireWisp12" parent="." instance=ExtResource( 10 )]
+position = Vector2( 291.809, 675.854 )
 
 [connection signal="body_entered" from="FirstRoom/Firstarea" to="." method="_on_Firstarea_body_entered"]
 [connection signal="body_exited" from="FirstRoom/Firstarea" to="." method="_on_Firstarea_body_exited"]

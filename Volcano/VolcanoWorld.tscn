@@ -1,55 +1,78 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Volcano/Lavafall.png" type="Texture" id=1]
 [ext_resource path="res://Player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Volcano/VolcanoWorld.gd" type="Script" id=3]
 [ext_resource path="res://Volcano/uglavabackground.png" type="Texture" id=4]
-[ext_resource path="res://Volcano/explosion.png" type="Texture" id=5]
 [ext_resource path="res://Volcano/lavadoor.png" type="Texture" id=6]
 [ext_resource path="res://Volcano/rockparkour.png" type="Texture" id=7]
+[ext_resource path="res://Volcano/lavamine.png" type="Texture" id=8]
+[ext_resource path="res://Volcano/lavaminecover.png" type="Texture" id=9]
+[ext_resource path="res://Volcano/Lavarocks.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Volcano/lavarocket.png" type="Texture" id=11]
+[ext_resource path="res://Hitbox.tscn" type="PackedScene" id=12]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 63.5, 6.25 )
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 7.0
+height = 142.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "explosion"
-length = 0.7
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimationPlayer/Explosion:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 8, 9, 10, 11, 12, 13, 9 ]
-}
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 17.5, 10.5 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "launch"
-length = 0.9
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimationPlayer/Explosion:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-}
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 15, 7.875 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 18, 10 )
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 22.6716
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 49.5, 21.5 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "LavaLaunch"
+length = 3.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LandingSpot/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1.5, 2.4, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 161, 1134 ), Vector2( 161, 947 ), Vector2( 163, 693 ), Vector2( 154, 42 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 63.5, 6.25 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 158.5, 12 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 642.5, 10 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 642, 10 )
 
 [node name="VolcanoWorld" type="Node2D"]
 script = ExtResource( 3 )
@@ -63,26 +86,93 @@ texture = ExtResource( 1 )
 margin_left = 320.0
 margin_right = 640.0
 margin_bottom = 967.0
+rect_pivot_offset = Vector2( 76, 683 )
 texture = ExtResource( 4 )
 stretch_mode = 2
 
-[node name="LandingSpot" type="StaticBody2D" parent="."]
-collision_layer = 2
+[node name="TextureRect2" type="TextureRect" parent="Background"]
+margin_left = -638.0
+margin_top = -25.0
+margin_bottom = 799.0
+rect_pivot_offset = Vector2( 179, 798 )
+texture = ExtResource( 4 )
+stretch_mode = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LandingSpot"]
-position = Vector2( 162.5, 1135 )
-shape = SubResource( 1 )
+[node name="Lavamine" type="Sprite" parent="Background"]
+position = Vector2( -318, 960 )
+texture = ExtResource( 8 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "launch"
-anims/explosion = SubResource( 3 )
-anims/launch = SubResource( 4 )
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/Lavamine"]
+collision_layer = 0
 
-[node name="Explosion" type="Sprite" parent="AnimationPlayer"]
-position = Vector2( 74, 1095 )
-texture = ExtResource( 5 )
-hframes = 14
-frame = 8
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lavamine/StaticBody2D"]
+position = Vector2( -57, 173 )
+rotation = 1.5708
+shape = SubResource( 7 )
+
+[node name="StairArea" type="Area2D" parent="Background/Lavamine"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lavamine/StairArea"]
+position = Vector2( -54.5, 151.5 )
+shape = SubResource( 8 )
+
+[node name="minefloors" type="StaticBody2D" parent="Background/Lavamine"]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Lavamine/minefloors"]
+polygon = PoolVector2Array( 274, 137, -320, 138, -320, 126, 273, 126, 277, 83, -258, 85, -266, 78, -262, 73, 277, 73, 279, 31, -72, 32, -68, 21, 280, 21, 278, -23, 254, -21, 257, -31, 280, -31, 275, -75, -23, -73, -19, -85, 272, -85, 283, -126, -199, -127, -200, -139, 283, -138, 278, -180, -320, -179, -319, -138, -226, -138, -222, -134, -225, -127, -320, -126, -320, -84, -50, -84, -47, -80, -51, -75, -320, -74, -320, -32, 210, -31, 219, -24, -321, -21, -320, 22, -99, 23, -96, 29, -320, 31, -320, 74, -288, 74, -296, 84, -320, 84, -322, 138, -338, 139, -334, -208, 296, -204, 300, 138 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lavamine/minefloors"]
+position = Vector2( -283, 120.5 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background/Lavamine/minefloors"]
+position = Vector2( -85.5, 65.875 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Background/Lavamine/minefloors"]
+position = Vector2( 236, 15 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Background/Lavamine/minefloors"]
+position = Vector2( -35, -39.5 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Background/Lavamine/minefloors"]
+position = Vector2( -213, -91.25 )
+shape = SubResource( 9 )
+
+[node name="ExitMine" type="Area2D" parent="Background/Lavamine"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Lavamine/ExitMine"]
+position = Vector2( -55, 114 )
+shape = SubResource( 10 )
+
+[node name="Lavaminecover" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( -320, 960 )
+texture = ExtResource( 9 )
+
+[node name="Lavarocks" parent="Background/Lavaminecover" instance=ExtResource( 10 )]
+
+[node name="Lavarocks2" parent="Background/Lavaminecover" instance=ExtResource( 10 )]
+position = Vector2( 124, -98 )
+
+[node name="Lavarocks7" parent="Background/Lavaminecover" instance=ExtResource( 10 )]
+position = Vector2( -4, -150 )
+
+[node name="Lavarocks3" parent="Background/Lavaminecover" instance=ExtResource( 10 )]
+position = Vector2( 193, 60 )
+
+[node name="Lavarocks4" parent="Background/Lavaminecover" instance=ExtResource( 10 )]
+position = Vector2( -223, 9 )
+
+[node name="Lavarocks5" parent="Background/Lavaminecover" instance=ExtResource( 10 )]
+position = Vector2( 104, 8 )
+
+[node name="Lavarocks6" parent="Background/Lavaminecover" instance=ExtResource( 10 )]
+position = Vector2( -151, -45 )
 
 [node name="Lavadoor" type="Sprite" parent="."]
 position = Vector2( 480, 1050 )
@@ -131,13 +221,86 @@ position = Vector2( 0, -5.5 )
 shape = SubResource( 5 )
 
 [node name="Rockparkour13" type="Sprite" parent="RockParkour"]
-position = Vector2( 12, 1140 )
+position = Vector2( 4, 1140 )
+z_index = 1
 texture = ExtResource( 7 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="RockParkour/Rockparkour13"]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RockParkour/Rockparkour13/StaticBody2D"]
+position = Vector2( 0, -5.5 )
+shape = SubResource( 5 )
+
+[node name="Rockparkour14" type="Sprite" parent="RockParkour"]
+position = Vector2( -43, 1136 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RockParkour/Rockparkour14"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockParkour/Rockparkour14/StaticBody2D"]
+position = Vector2( 0, -5.5 )
+shape = SubResource( 5 )
+
+[node name="Rockparkour15" type="Sprite" parent="RockParkour"]
+position = Vector2( -89, 1142 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RockParkour/Rockparkour15"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockParkour/Rockparkour15/StaticBody2D"]
+position = Vector2( 0, -5.5 )
+shape = SubResource( 5 )
+
+[node name="Rockparkour16" type="Sprite" parent="RockParkour"]
+position = Vector2( -139, 1137 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RockParkour/Rockparkour16"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockParkour/Rockparkour16/StaticBody2D"]
+position = Vector2( 0, -5.5 )
+shape = SubResource( 5 )
+
+[node name="Rockparkour17" type="Sprite" parent="RockParkour"]
+position = Vector2( -193, 1141 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RockParkour/Rockparkour17"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockParkour/Rockparkour17/StaticBody2D"]
+position = Vector2( 0, -5.5 )
+shape = SubResource( 5 )
+
+[node name="Rockparkour18" type="Sprite" parent="RockParkour"]
+position = Vector2( -241, 1136 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RockParkour/Rockparkour18"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockParkour/Rockparkour18/StaticBody2D"]
+position = Vector2( 0, -5.5 )
+shape = SubResource( 5 )
+
+[node name="Rockparkour19" type="Sprite" parent="RockParkour"]
+position = Vector2( -286, 1141 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RockParkour/Rockparkour19"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RockParkour/Rockparkour19/StaticBody2D"]
 position = Vector2( 0, -5.5 )
 shape = SubResource( 5 )
 
@@ -243,12 +406,80 @@ shape = SubResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 148, 73 )
 
+[node name="TopLeft" parent="Player/Camera2D/Limits" index="0"]
+position = Vector2( -637, 0 )
+
 [node name="BottomRight" parent="Player/Camera2D/Limits" index="1"]
 position = Vector2( 640, 1140 )
 
+[node name="LeaveVolcano" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeaveVolcano"]
+position = Vector2( 162.5, 1104 )
+shape = SubResource( 11 )
+disabled = true
+
+[node name="LavaLaunch" type="AnimationPlayer" parent="."]
+root_node = NodePath("Lavarocket")
+anims/LavaLaunch = SubResource( 12 )
+
+[node name="Lavarocket" type="Sprite" parent="LavaLaunch"]
+position = Vector2( 130, 570 )
+texture = ExtResource( 11 )
+hframes = 4
+
+[node name="LandingSpot" type="StaticBody2D" parent="LavaLaunch/Lavarocket"]
+position = Vector2( -130, -570 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaLaunch/Lavarocket/LandingSpot"]
+position = Vector2( 161, 1134 )
+shape = SubResource( 1 )
+
+[node name="TopExit" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopExit"]
+position = Vector2( 159.5, 12 )
+shape = SubResource( 13 )
+
+[node name="lava" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lava"]
+position = Vector2( -1.5, 1149 )
+shape = SubResource( 14 )
+
+[node name="Hitbox" parent="lava" instance=ExtResource( 12 )]
+position = Vector2( -202, 1170 )
+collision_layer = 0
+collision_mask = 32
+damage = 10
+
+[node name="CollisionShape2D" parent="lava/Hitbox" index="0"]
+position = Vector2( 200, -21 )
+shape = SubResource( 15 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -2, -2, -639, 0, -638, 1151, 641, 1153, 641, 0, 320, 2, 319, -41, 697, -37, 711, 1214, -704, 1195, -699, -71, 0, -48 )
+
+[connection signal="body_entered" from="Background/Lavamine/StairArea" to="." method="_on_StairArea_body_entered"]
+[connection signal="body_exited" from="Background/Lavamine/StairArea" to="." method="_on_StairArea_body_exited"]
+[connection signal="body_entered" from="Background/Lavamine/ExitMine" to="." method="_on_ExitMine_body_entered"]
+[connection signal="body_exited" from="Background/Lavamine/ExitMine" to="." method="_on_ExitMine_body_exited"]
 [connection signal="body_entered" from="Lavadoor/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Lavadoor/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="LeaveVolcano" to="." method="_on_LeaveVolcano_body_entered"]
+[connection signal="body_exited" from="LeaveVolcano" to="." method="_on_LeaveVolcano_body_exited"]
+[connection signal="body_entered" from="TopExit" to="." method="_on_TopExit_body_entered"]
+[connection signal="body_exited" from="TopExit" to="." method="_on_TopExit_body_exited"]
+[connection signal="body_entered" from="lava" to="." method="_on_lava_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/Hurtbox"]
 [editable path="Player/Hitbox"]
+[editable path="lava/Hitbox"]
