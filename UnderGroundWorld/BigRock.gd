@@ -18,7 +18,3 @@ func _on_FloorDetector_area_entered(_area):
 	yield(get_tree().create_timer(.2), "timeout")
 	queue_free()
 	
-
-func _input(event):
-	if event.is_action_pressed("Inventory"):
-		movement_enabled = !movement_enabled
